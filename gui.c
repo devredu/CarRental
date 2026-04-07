@@ -1,0 +1,143 @@
+#include "gui.h"
+#include <windows.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+void zaczekaj(){
+    printf("\n");
+    printf(GRAY "Nacisnij enter..." RESET);
+    while (getchar() != '\n');
+    getchar();
+}
+
+void menu_glowne(){
+    int wybor;
+    bool status = true;
+    while (status) {
+        system("cls");
+        printf("===============================\n");
+        printf(BOLD "   WYPOZYCZALNIA SAMOCHODOW    \n" RESET);
+        printf("===============================\n");
+        printf(GREEN "1. " RESET "Zarzadzanie samochodami\n");
+        printf(GREEN "2. " RESET "Zarzadzanie klientami\n");
+        printf(GREEN "3. " RESET "Wypozyczenia / Zwroty\n");
+        printf(GREEN "0. " RESET "Wyjdz i zapisz\n");
+        printf("-------------------------------\n");
+        printf(BOLD "Wybor: " RESET);
+
+        if (scanf("%d", &wybor) != 1) {
+            printf(BOLD_RED "\nBLAD! Wpisz liczbe." RESET);
+            zaczekaj();
+            continue;
+        }
+
+        switch (wybor) {
+            case 1:
+                menu_samochod();
+                break;
+            case 2:
+                menu_klient();
+                break;
+            case 0:
+                printf("\n");
+                printf("Zapisywanie...\n");
+                Sleep(500);
+                printf("Zamykanie...");
+                Sleep(1000);
+                status = false;
+                break;
+            default:
+                printf("\a");
+                printf(BOLD_RED "\nBLAD! Wybierz jedna z opcji!" RESET);
+                zaczekaj();
+                break;
+        }
+    }
+}
+
+void menu_samochod(){
+    int wybor;
+    bool status = true;
+    while (status) {
+        system("cls");
+        printf("===============================\n");
+        printf(BOLD "    ZARZADZANIE SAMOCHODAMI    \n" RESET);
+        printf("===============================\n");
+        printf(GREEN "1. " RESET "Dodaj samochod\n");
+        printf(GREEN "2. " RESET "Usun samochod\n");
+        printf(GREEN "3. " RESET "Edytuj samochod\n");
+        printf(GREEN "0. " RESET "Wroc do menu glownego\n");
+        printf("-------------------------------\n");
+        printf("Wybor: ");
+
+        if (scanf("%d", &wybor) != 1) {
+            printf(BOLD_RED "\nBLAD! Wpisz liczbe." RESET);
+            zaczekaj();
+            continue;
+        }
+
+        switch (wybor) {
+            case 1:
+                printf("Dodawanie");
+                break;
+            case 2:
+                printf("Usuwanie");
+                break;
+            case 3:
+                printf("Edytowanie");
+                break;
+            case 0:
+                status = false;
+                break;
+            default:
+                printf("\a");
+                printf(BOLD_RED "\nBLAD! Wybierz jedna z opcji!" RESET);
+                zaczekaj();
+                break;
+        }
+    }
+}
+
+void menu_klient(){
+    int wybor;
+    bool status = true;
+    while (status) {
+        system("cls");
+        printf("===============================\n");
+        printf(BOLD "      ZARZADZANIE KLIENTAMI    \n" RESET);
+        printf("===============================\n");
+        printf(GREEN "1. " RESET "Dodaj kilienta\n");
+        printf(GREEN "2. " RESET "Usun klienta\n");
+        printf(GREEN "3. " RESET "Edytuj klienta\n");
+        printf(GREEN "0. " RESET "Wroc do menu glownego\n");
+        printf("-------------------------------\n");
+        printf("Wybor: ");
+
+        if (scanf("%d", &wybor) != 1) {
+            printf(BOLD_RED "\nBLAD! Wpisz liczbe." RESET);
+            zaczekaj();
+            continue;
+        }
+
+        switch (wybor) {
+            case 1:
+                printf("Dodawanie");
+                break;
+            case 2:
+                printf("Usuwanie");
+                break;
+            case 3:
+                printf("Edytowanie");
+                break;
+            case 0:
+                status = false;
+                break;
+            default:
+                printf("\a");
+                printf(BOLD_RED "\nBLAD! Wybierz jedna z opcji!" RESET);
+                zaczekaj();
+                break;
+        }
+    }
+}
