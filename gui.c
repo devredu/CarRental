@@ -39,6 +39,9 @@ void menu_glowne(){
             case 2:
                 menu_klient();
                 break;
+            case 3:
+                menu_wypozyczenie();
+                break;
             case 0:
                 printf("\n");
                 printf("Zapisywanie...\n");
@@ -67,6 +70,7 @@ void menu_samochod(){
         printf(GREEN "1. " RESET "Dodaj samochod\n");
         printf(GREEN "2. " RESET "Usun samochod\n");
         printf(GREEN "3. " RESET "Edytuj samochod\n");
+        printf(GREEN "4. " RESET "Wyswietl liste samochodow\n");
         printf(GREEN "0. " RESET "Wroc do menu glownego\n");
         printf("-------------------------------\n");
         printf("Wybor: ");
@@ -79,13 +83,16 @@ void menu_samochod(){
 
         switch (wybor) {
             case 1:
-                printf("Dodawanie");
+                // dodawanie samochodu
                 break;
             case 2:
-                printf("Usuwanie");
+                // usuwanie samochodu
                 break;
             case 3:
-                printf("Edytowanie");
+                // edytowanie samochodu
+                break;
+            case 4:
+                // wyswietlenie listy samochodow
                 break;
             case 0:
                 status = false;
@@ -110,6 +117,7 @@ void menu_klient(){
         printf(GREEN "1. " RESET "Dodaj kilienta\n");
         printf(GREEN "2. " RESET "Usun klienta\n");
         printf(GREEN "3. " RESET "Edytuj klienta\n");
+        printf(GREEN "4. " RESET "Wyswietl liste klientow\n");
         printf(GREEN "0. " RESET "Wroc do menu glownego\n");
         printf("-------------------------------\n");
         printf("Wybor: ");
@@ -122,14 +130,59 @@ void menu_klient(){
 
         switch (wybor) {
             case 1:
-                printf("Dodawanie");
+                // dodawania klientow
                 break;
             case 2:
-                printf("Usuwanie");
+                // usuwanie klientow
                 break;
             case 3:
-                printf("Edytowanie");
+                // edytowaniie klientow
                 break;
+            case 4:
+                // lista klientow
+                break;
+            case 0:
+                status = false;
+                break;
+            default:
+                printf("\a");
+                printf(BOLD_RED "\nBLAD! Wybierz jedna z opcji!" RESET);
+                zaczekaj();
+                break;
+        }
+    }
+}
+
+void menu_wypozyczenie(){
+    int wybor;
+    bool status = true;
+    while (status) {
+        system("cls");
+        printf("===============================\n");
+        printf(BOLD "      WYPOZYCZENIA / ZWROTY    \n" RESET);
+        printf("===============================\n");
+        printf(GREEN "1. " RESET "Dodaj wypozyczenie\n");
+        printf(GREEN "1. " RESET "Usun wypozyczenie\n");
+        printf(GREEN "2. " RESET "Wyswietl liste aktualnie wypozyczonych samochodow\n");
+        printf(GREEN "0. " RESET "Wroc do menu glownego\n");
+        printf("-------------------------------\n");
+        printf("Wybor: ");
+
+        if (scanf("%d", &wybor) != 1) {
+            printf(BOLD_RED "\nBLAD! Wpisz liczbe." RESET);
+            zaczekaj();
+            continue;
+        }
+
+        switch (wybor) {
+            case 1:
+                // dodawnie wypozyczenia
+                break;
+            case 2:
+                // usuwanie wypozyczenia
+                break;
+            case 3:
+                // lista aktualnie wypozyczonych
             case 0:
                 status = false;
                 break;
