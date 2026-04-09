@@ -1,5 +1,4 @@
 #include "gui.h"
-#include <windows.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,7 +14,7 @@ void menu_glowne(){
     int wybor;
     bool status = true;
     while (status) {
-        system("cls");
+        system(CLEAR);
         printf("===============================\n");
         printf(BOLD "   WYPOZYCZALNIA SAMOCHODOW    \n" RESET);
         printf("===============================\n");
@@ -63,7 +62,7 @@ void menu_samochod(){
     int wybor;
     bool status = true;
     while (status) {
-        system("cls");
+        system(CLEAR);
         printf("===============================\n");
         printf(BOLD "    ZARZADZANIE SAMOCHODAMI    \n" RESET);
         printf("===============================\n");
@@ -110,7 +109,7 @@ void menu_klient(){
     int wybor;
     bool status = true;
     while (status) {
-        system("cls");
+        system(CLEAR);
         printf("===============================\n");
         printf(BOLD "      ZARZADZANIE KLIENTAMI    \n" RESET);
         printf("===============================\n");
@@ -157,13 +156,13 @@ void menu_wypozyczenie(){
     int wybor;
     bool status = true;
     while (status) {
-        system("cls");
+        system(CLEAR);
         printf("===============================\n");
         printf(BOLD "      WYPOZYCZENIA / ZWROTY    \n" RESET);
         printf("===============================\n");
         printf(GREEN "1. " RESET "Dodaj wypozyczenie\n");
-        printf(GREEN "1. " RESET "Usun wypozyczenie\n");
-        printf(GREEN "2. " RESET "Wyswietl liste aktualnie wypozyczonych samochodow\n");
+        printf(GREEN "2. " RESET "Usun wypozyczenie\n");
+        printf(GREEN "3. " RESET "Wyswietl liste aktualnie wypozyczonych samochodow\n");
         printf(GREEN "0. " RESET "Wroc do menu glownego\n");
         printf("-------------------------------\n");
         printf("Wybor: ");
