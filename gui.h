@@ -1,6 +1,15 @@
 #ifndef CARRENTAL_GUI_H
 #define CARRENTAL_GUI_H
 
+#ifdef _WIN32
+    #include <windows.h>
+    #define CLEAR "cls"
+#else
+    #include <unistd.h>
+    #define CLEAR "clear"
+    #define Sleep(ms) usleep((ms) * 1000)
+#endif
+
 #define RESET       "\033[0m"
 #define BOLD        "\033[1m"
 #define GRAY        "\033[90m"
