@@ -6,7 +6,8 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
 add_executable(CarRental
         main.c
         structs.h
-        structs.c
         gui.h
         gui.c
+        cars.c
+        cars.h
 )

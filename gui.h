@@ -20,8 +20,11 @@
 #define BOLD_RED    "\033[1;31m"
 #define BOLD_YELLOW "\033[1;33m"
 
-void menu_glowne();
-void menu_samochod();
+#include "structs.h"
+
+void zaczekaj();
+void menu_glowne(Samochod **list_samochodow);
+void menu_samochod(Samochod **lista_samochodow);
 void menu_klient();
 void menu_wypozyczenie();
 

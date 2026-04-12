@@ -1,4 +1,6 @@
 #include "gui.h"
+#include "structs.h"
+#include "cars.h"
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,7 +12,7 @@ void zaczekaj(){
     getchar();
 }
 
-void menu_glowne(){
+void menu_glowne(Samochod **lista_samochodow){
     int wybor;
     bool status = true;
     while (status) {
@@ -33,7 +35,7 @@ void menu_glowne(){
 
         switch (wybor) {
             case 1:
-                menu_samochod();
+                menu_samochod(lista_samochodow);
                 break;
             case 2:
                 menu_klient();
@@ -58,7 +60,7 @@ void menu_glowne(){
     }
 }
 
-void menu_samochod(){
+void menu_samochod(Samochod **lista_samochodow){
     int wybor;
     bool status = true;
     while (status) {
@@ -82,7 +84,7 @@ void menu_samochod(){
 
         switch (wybor) {
             case 1:
-                // dodawanie samochodu
+                dodaj_samochod(lista_samochodow);
                 break;
             case 2:
                 // usuwanie samochodu
@@ -91,7 +93,7 @@ void menu_samochod(){
                 // edytowanie samochodu
                 break;
             case 4:
-                // wyswietlenie listy samochodow
+                wyswietl_samochody(*lista_samochodow);
                 break;
             case 0:
                 status = false;
