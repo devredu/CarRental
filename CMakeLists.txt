@@ -10,4 +10,8 @@ add_executable(CarRental
         gui.c
         cars.c
         cars.h
+        files.c
+        files.h
+        utils.c
+        utils.h
 )

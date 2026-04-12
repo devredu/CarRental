@@ -1,6 +1,7 @@
 #include "cars.h"
 #include "structs.h"
 #include "gui.h"
+#include "utils.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -12,8 +13,12 @@ void dodaj_samochod(Samochod **lista_samochodow){
     nowy->next = NULL;
 
     system(CLEAR);
+    printf("===============================\n");
+    printf(BOLD "      DODAWANIE SAMOCHODU    \n" RESET);
+    printf("===============================\n");
     printf("Podaj numer rejestracyjny samochodu: ");
     scanf("%19s", nowy->nr_rejestracyjny);
+    wyczysc_bufor();
     zamien_na_wielkie(nowy->nr_rejestracyjny);
     Samochod *sprawdzenie = *lista_samochodow;
     while (sprawdzenie != NULL) {
@@ -27,18 +32,21 @@ void dodaj_samochod(Samochod **lista_samochodow){
     }
     printf("Podaj marke samochodu: ");
     scanf("%19s", nowy->marka);
+    wyczysc_bufor();
     zamien_na_wielkie(nowy->marka);
     printf("Podaj model samochodu: ");
     scanf("%29s", nowy->model);
+    wyczysc_bufor();
     zamien_na_wielkie(nowy->model);
     printf("Podaj kolor samochodu: ");
     scanf("%29s", nowy->kolor);
+    wyczysc_bufor();
     zamien_na_wielkie(nowy->kolor);
     while (1) {
         printf("Podaj rok produkcji samochodu: ");
         if (scanf("%d", &nowy->rok_produkcji) == 1) {
             if (nowy->rok_produkcji > 1900 && nowy->rok_produkcji <= 2026) {
-                while (getchar() != '\n');
+                wyczysc_bufor();
                 break;
             } else {
                 printf(BOLD_RED "\nBLAD! Podaj prawidlowy rok (1900-2026).\n" RESET);
@@ -46,8 +54,10 @@ void dodaj_samochod(Samochod **lista_samochodow){
         } else {
             printf(BOLD_RED "\nBLAD! Rok musi skladac sie z liczb.\n" RESET);
         }
-        while (getchar() != '\n');
+        wyczysc_bufor();
     }
+    printf(GREEN "\nPomyslnie dodano samochod!" RESET);
+    zaczekaj();
 
     if (*lista_samochodow == NULL) {
         *lista_samochodow = nowy;
@@ -71,12 +81,14 @@ void usun_samochod(Samochod **lista_samochodow){
     // DODAC SPRAWDZANIE CZY SAMOCHOD NIE JEST AKTUALNIE WYPOZYCZONY
 
     system(CLEAR);
+    printf("===============================\n");
+    printf(BOLD "      USUWANIE SAMOCHODU    \n" RESET);
+    printf("===============================\n");
     char szukana_rejestracja[20];
     printf("Podaj numer rejestracyjny samochodu do usuniecia: ");
     scanf("%19s", szukana_rejestracja);
-    for (int i = 0; szukana_rejestracja[i]; i++) {
-        szukana_rejestracja[i] = toupper(szukana_rejestracja[i]);
-    }
+    wyczysc_bufor();
+    zamien_na_wielkie(szukana_rejestracja);
 
     Samochod *temp = *lista_samochodow;
 

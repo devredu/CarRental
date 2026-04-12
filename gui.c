@@ -1,22 +1,10 @@
 #include "gui.h"
 #include "structs.h"
 #include "cars.h"
+#include "utils.h"
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-void zaczekaj(){
-    printf("\n");
-    printf(GRAY "Nacisnij enter..." RESET);
-    while (getchar() != '\n');
-    getchar();
-}
-
-void zamien_na_wielkie(char *tekst) {
-    for (int i = 0; tekst[i]; i++) {
-        tekst[i] = toupper((unsigned char)tekst[i]);
-    }
-}
 
 void menu_glowne(Samochod **lista_samochodow){
     int wybor;
@@ -36,9 +24,11 @@ void menu_glowne(Samochod **lista_samochodow){
         if (scanf("%d", &wybor) != 1) {
             printf("\a");
             printf(BOLD_RED "\nBLAD! Wpisz liczbe." RESET);
+            wyczysc_bufor();
             zaczekaj();
             continue;
         }
+        wyczysc_bufor();
 
         switch (wybor) {
             case 1:
@@ -86,9 +76,11 @@ void menu_samochod(Samochod **lista_samochodow){
         if (scanf("%d", &wybor) != 1) {
             printf("\a");
             printf(BOLD_RED "\nBLAD! Wpisz liczbe." RESET);
+            wyczysc_bufor();
             zaczekaj();
             continue;
         }
+        wyczysc_bufor();
 
         switch (wybor) {
             case 1:
@@ -134,9 +126,11 @@ void menu_klient(){
         if (scanf("%d", &wybor) != 1) {
             printf("\a");
             printf(BOLD_RED "\nBLAD! Wpisz liczbe." RESET);
+            wyczysc_bufor();
             zaczekaj();
             continue;
         }
+        wyczysc_bufor();
 
         switch (wybor) {
             case 1:
@@ -181,9 +175,11 @@ void menu_wypozyczenie(){
         if (scanf("%d", &wybor) != 1) {
             printf("\a");
             printf(BOLD_RED "\nBLAD! Wpisz liczbe." RESET);
+            wyczysc_bufor();
             zaczekaj();
             continue;
         }
+        wyczysc_bufor();
 
         switch (wybor) {
             case 1:
@@ -194,6 +190,7 @@ void menu_wypozyczenie(){
                 break;
             case 3:
                 // lista aktualnie wypozyczonych
+                break;
             case 0:
                 status = false;
                 break;
