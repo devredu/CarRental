@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include "gui.h"
 #include "structs.h"
-#include "cars.h"
 
 int main(void){
     Samochod *lista_samochodow = NULL;

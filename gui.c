@@ -12,6 +12,12 @@ void zaczekaj(){
     getchar();
 }
 
+void zamien_na_wielkie(char *tekst) {
+    for (int i = 0; tekst[i]; i++) {
+        tekst[i] = toupper((unsigned char)tekst[i]);
+    }
+}
+
 void menu_glowne(Samochod **lista_samochodow){
     int wybor;
     bool status = true;
@@ -23,11 +29,12 @@ void menu_glowne(Samochod **lista_samochodow){
         printf(GREEN "1. " RESET "Zarzadzanie samochodami\n");
         printf(GREEN "2. " RESET "Zarzadzanie klientami\n");
         printf(GREEN "3. " RESET "Wypozyczenia / Zwroty\n");
-        printf(GREEN "0. " RESET "Wyjdz i zapisz\n");
+        printf(GREEN "0. " RESET "Zapisz i wyjdz\n");
         printf("-------------------------------\n");
         printf(BOLD "Wybor: " RESET);
 
         if (scanf("%d", &wybor) != 1) {
+            printf("\a");
             printf(BOLD_RED "\nBLAD! Wpisz liczbe." RESET);
             zaczekaj();
             continue;
@@ -77,6 +84,7 @@ void menu_samochod(Samochod **lista_samochodow){
         printf("Wybor: ");
 
         if (scanf("%d", &wybor) != 1) {
+            printf("\a");
             printf(BOLD_RED "\nBLAD! Wpisz liczbe." RESET);
             zaczekaj();
             continue;
@@ -87,7 +95,7 @@ void menu_samochod(Samochod **lista_samochodow){
                 dodaj_samochod(lista_samochodow);
                 break;
             case 2:
-                // usuwanie samochodu
+                usun_samochod(lista_samochodow);
                 break;
             case 3:
                 // edytowanie samochodu
@@ -124,6 +132,7 @@ void menu_klient(){
         printf("Wybor: ");
 
         if (scanf("%d", &wybor) != 1) {
+            printf("\a");
             printf(BOLD_RED "\nBLAD! Wpisz liczbe." RESET);
             zaczekaj();
             continue;
@@ -170,6 +179,7 @@ void menu_wypozyczenie(){
         printf("Wybor: ");
 
         if (scanf("%d", &wybor) != 1) {
+            printf("\a");
             printf(BOLD_RED "\nBLAD! Wpisz liczbe." RESET);
             zaczekaj();
             continue;

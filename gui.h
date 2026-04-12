@@ -23,6 +23,7 @@
 #include "structs.h"
 
 void zaczekaj();
+void zamien_na_wielkie(char *tekst);
 void menu_glowne(Samochod **list_samochodow);
 void menu_samochod(Samochod **lista_samochodow);
 void menu_klient();
