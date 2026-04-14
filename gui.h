@@ -24,9 +24,9 @@
 
 #include "structs.h"
 
-void menu_glowne(Samochod **list_samochodow);
+void menu_glowne(Samochod **lista_samochodow, Klient **lista_klientow);
 void menu_samochod(Samochod **lista_samochodow);
-void menu_klient();
+void menu_klient(Klient **lista_klientow);
 void menu_wypozyczenie();
 
 #endif //CARRENTAL_GUI_H

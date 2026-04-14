@@ -15,7 +15,7 @@ typedef struct Klient {
     char imie[20];
     char nazwisko[30];
     char adres[30];
-    char numer_telefonu[15];
+    char numer_telefonu[10];
     struct Klient *next;
 } Klient;
 

@@ -6,9 +6,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "clients.h"
 #include "files.h"
 
-void menu_glowne(Samochod **lista_samochodow){
+void menu_glowne(Samochod **lista_samochodow, Klient **lista_klientow){
     int wybor;
     bool status = true;
     while (status) {
@@ -37,7 +38,7 @@ void menu_glowne(Samochod **lista_samochodow){
                 menu_samochod(lista_samochodow);
                 break;
             case 2:
-                menu_klient();
+                menu_klient(lista_klientow);
                 break;
             case 3:
                 menu_wypozyczenie();
@@ -46,6 +47,7 @@ void menu_glowne(Samochod **lista_samochodow){
                 printf("\n");
                 printf("Zapisywanie...\n");
                 zapisz_samochody(*lista_samochodow);
+                //zapisz_klientow(*lista_klientow);
                 Sleep(500);
                 printf("Zamykanie...");
                 Sleep(1000);
@@ -110,7 +112,7 @@ void menu_samochod(Samochod **lista_samochodow){
     }
 }
 
-void menu_klient(){
+void menu_klient(Klient **lista_klientow){
     int wybor;
     bool status = true;
     while (status) {
@@ -137,16 +139,16 @@ void menu_klient(){
 
         switch (wybor) {
             case 1:
-                // dodawania klientow
+                dodaj_klienta(lista_klientow);
                 break;
             case 2:
-                // usuwanie klientow
+                usun_klienta(lista_klientow);
                 break;
             case 3:
                 // edytowaniie klientow
                 break;
             case 4:
-                // lista klientow
+                wyswietl_klientow(*lista_klientow);
                 break;
             case 0:
                 status = false;
