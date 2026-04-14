@@ -4,6 +4,7 @@
 #include "utils.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 void dodaj_samochod(Samochod **lista_samochodow){
     Samochod *nowy = (Samochod*)malloc(sizeof(Samochod));
@@ -42,7 +43,7 @@ void dodaj_samochod(Samochod **lista_samochodow){
     scanf("%29s", nowy->kolor);
     wyczysc_bufor();
     zamien_na_wielkie(nowy->kolor);
-    while (1) {
+    while (true) {
         printf("Podaj rok produkcji samochodu: ");
         if (scanf("%d", &nowy->rok_produkcji) == 1) {
             if (nowy->rok_produkcji > 1900 && nowy->rok_produkcji <= 2026) {

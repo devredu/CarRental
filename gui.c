@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "files.h"
+
 void menu_glowne(Samochod **lista_samochodow){
     int wybor;
     bool status = true;
@@ -43,6 +45,7 @@ void menu_glowne(Samochod **lista_samochodow){
             case 0:
                 printf("\n");
                 printf("Zapisywanie...\n");
+                zapisz_samochody(*lista_samochodow);
                 Sleep(500);
                 printf("Zamykanie...");
                 Sleep(1000);

@@ -16,7 +16,7 @@ typedef struct Klient {
     char nazwisko[30];
     char adres[30];
     char numer_telefonu[15];
-    //struct Klient *next;
+    struct Klient *next;
 } Klient;
 
 typedef struct Wypozyczenie {

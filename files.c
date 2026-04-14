@@ -1,0 +1,51 @@
+#include "files.h"
+#include "gui.h"
+#include <stdio.h>
+
+void zapisz_samochody(Samochod *lista_samochodow){
+    FILE *plik = fopen("samochody.txt", "w");
+
+    if (plik == NULL) {
+        printf(BOLD_RED "BLAD! Nie mozna utworzyc pliku 'samochody.txt'." RESET);
+        return;
+    }
+
+    Samochod *temp = lista_samochodow;
+    while (temp != NULL) {
+        fprintf(plik, "%s %s %s %s %d\n", temp->nr_rejestracyjny, temp->marka, temp->model, temp->kolor, temp->rok_produkcji);
+        temp = temp->next;
+    }
+    fclose(plik);
+}
+
+void wczytaj_samochody(Samochod **lista_samochodow){
+    FILE  *plik = fopen("samochody.txt", "r");
+    if (plik == NULL) {
+        return;
+    }
+    char nr_rejestracyjny[20], marka[20], model[30], kolor[30];
+    int rok_produkcji;
+    while (fscanf(plik, "%19s %19s %29s %29s %d", nr_rejestracyjny, marka, model, kolor, &rok_produkcji) == 5) {
+        Samochod *nowy = (Samochod*)malloc(sizeof(Samochod));
+        if (nowy == NULL) {
+            break;
+        }
+        strcpy(nowy->nr_rejestracyjny, nr_rejestracyjny);
+        strcpy(nowy->marka, marka);
+        strcpy(nowy->model, model);
+        strcpy(nowy->kolor, kolor);
+        nowy->rok_produkcji = rok_produkcji;
+        nowy->next = NULL;
+
+        if (*lista_samochodow == NULL) {
+            *lista_samochodow = nowy;
+        } else {
+            Samochod *temp = *lista_samochodow;
+            while (temp->next != NULL) {
+                temp = temp->next;
+            }
+            temp->next = nowy;
+        }
+    }
+    fclose(plik);
+}

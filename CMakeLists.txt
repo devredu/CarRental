@@ -14,4 +14,8 @@ add_executable(CarRental
         files.h
         utils.c
         utils.h
+        clients.c
+        clients.h
+        rentals.c
+        rentals.h
 )

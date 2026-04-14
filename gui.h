@@ -5,6 +5,8 @@
     #include <windows.h>
     #define CLEAR "cls"
 #else
+    #include <ctype.h>
+    #include <strings.h>
     #include <unistd.h>
     #define CLEAR "clear"
     #define Sleep(ms) usleep((ms) * 1000)
