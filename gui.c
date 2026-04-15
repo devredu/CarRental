@@ -2,12 +2,11 @@
 #include "structs.h"
 #include "cars.h"
 #include "utils.h"
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdlib.h>
-
 #include "clients.h"
 #include "files.h"
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
 
 void menu_glowne(Samochod **lista_samochodow, Klient **lista_klientow){
     int wybor;
@@ -47,7 +46,7 @@ void menu_glowne(Samochod **lista_samochodow, Klient **lista_klientow){
                 printf("\n");
                 printf("Zapisywanie...\n");
                 zapisz_samochody(*lista_samochodow);
-                //zapisz_klientow(*lista_klientow);
+                zapisz_klientow(*lista_klientow);
                 Sleep(500);
                 printf("Zamykanie...");
                 Sleep(1000);

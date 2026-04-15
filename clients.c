@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
+#include <ctype.h>
 
 void dodaj_klienta(Klient **lista_klientow){
     Klient *nowy = (Klient*)malloc(sizeof(Klient));
@@ -57,8 +59,7 @@ void dodaj_klienta(Klient **lista_klientow){
     wyczysc_bufor();
     zamien_na_wielkie(nowy->nazwisko);
     printf("Podaj adres: ");
-    scanf(" %29[^\n]s", nowy->adres);
-    // pobiera tylko do bialego znaku, jakos to naprawic jak jest adres np. Kielce, ul. Warszawska 67
+    scanf(" %29[^\n]", nowy->adres);
     wyczysc_bufor();
     zamien_na_wielkie(nowy->adres);
     while (true) {
@@ -105,7 +106,7 @@ void usun_klienta(Klient **lista_klientow){
         return;
     }
 
-    // DODAC SPRAWDZANIE CZY klient nie wypozycza czegos aktualnie
+    // no jakes sprawdzenie trzeba dodac czy klient nie ma wypozyczonego auta aktualnie czy cos takieigo
 
     system(CLEAR);
     printf("===============================\n");

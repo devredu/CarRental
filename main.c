@@ -7,7 +7,7 @@ int main(void){
     Samochod *lista_samochodow = NULL;
     Klient *lista_klientow = NULL;
     wczytaj_samochody(&lista_samochodow);
-    //wczytaj_klientow(&lista_klientow);
+    wczytaj_klientow(&lista_klientow);
     menu_glowne(&lista_samochodow, &lista_klientow);
     return 0;
 }

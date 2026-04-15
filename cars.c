@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 
 void dodaj_samochod(Samochod **lista_samochodow){
     Samochod *nowy = (Samochod*)malloc(sizeof(Samochod));
@@ -85,7 +86,7 @@ void usun_samochod(Samochod **lista_samochodow){
         zaczekaj();
         return;
     }
-
+    // zla rejestracja = sprawdz ponownie
     // DODAC SPRAWDZANIE CZY SAMOCHOD NIE JEST AKTUALNIE WYPOZYCZONY
 
     system(CLEAR);
