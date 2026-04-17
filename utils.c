@@ -1,6 +1,7 @@
 #include "utils.h"
 #include "gui.h"
 #include <stdio.h>
+#include <ctype.h>
 
 void zaczekaj(){
     printf("\n");

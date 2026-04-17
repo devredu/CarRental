@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 void menu_glowne(Samochod **lista_samochodow, Klient **lista_klientow){
     int wybor;

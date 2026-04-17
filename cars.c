@@ -4,7 +4,6 @@
 #include "utils.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <string.h>
 
 void dodaj_samochod(Samochod **lista_samochodow){
@@ -18,24 +17,19 @@ void dodaj_samochod(Samochod **lista_samochodow){
     printf("===============================\n");
     printf(BOLD "      DODAWANIE SAMOCHODU    \n" RESET);
     printf("===============================\n");
-    while (true) {
-        printf("Podaj numer rejestracyjny samochodu: ");
-        scanf("%19s", nowy->nr_rejestracyjny);
-        wyczysc_bufor();
-        zamien_na_wielkie(nowy->nr_rejestracyjny);
-        int duplikat = 0;
-        Samochod *sprawdzenie = *lista_samochodow;
-        while (sprawdzenie != NULL) {
-            if (strcmp(sprawdzenie->nr_rejestracyjny, nowy->nr_rejestracyjny) == 0) {
-                printf("\a" BOLD_RED "\nBLAD! Samochod z tym numerem rejestracyjnym juz istnieje.\n\n" RESET);
-                duplikat = 1;
-                break;
-            }
-            sprawdzenie = sprawdzenie->next;
+    printf("Podaj numer rejestracyjny samochodu: ");
+    scanf("%19s", nowy->nr_rejestracyjny);
+    wyczysc_bufor();
+    zamien_na_wielkie(nowy->nr_rejestracyjny);
+    Samochod *sprawdzenie = *lista_samochodow;
+    while (sprawdzenie != NULL) {
+        if (strcmp(sprawdzenie->nr_rejestracyjny, nowy->nr_rejestracyjny) == 0) {
+            printf(BOLD_RED "\nBLAD! Samochod o takiej rejestracji jest juz dodany!" RESET);
+            free(nowy);
+            zaczekaj();
+            return;
         }
-        if (!duplikat){
-            break;
-        }
+        sprawdzenie = sprawdzenie->next;
     }
     printf("Podaj marke samochodu: ");
     scanf("%19s", nowy->marka);
@@ -49,19 +43,17 @@ void dodaj_samochod(Samochod **lista_samochodow){
     scanf("%29s", nowy->kolor);
     wyczysc_bufor();
     zamien_na_wielkie(nowy->kolor);
-    while (true) {
+    while (1) {
         printf("Podaj rok produkcji samochodu: ");
         if (scanf("%d", &nowy->rok_produkcji) == 1) {
             if (nowy->rok_produkcji > 1900 && nowy->rok_produkcji <= 2026) {
                 wyczysc_bufor();
                 break;
             } else {
-                printf("\a");
-                printf(BOLD_RED "\nBLAD! Podaj prawidlowy rok (1900-2026).\n\n" RESET);
+                printf(BOLD_RED "\nBLAD! Podaj prawidlowy rok (1900-2026).\n" RESET);
             }
         } else {
-            printf("\a");
-            printf(BOLD_RED "\nBLAD! Rok moze zawierac tylko cyfry.\n\n" RESET);
+            printf(BOLD_RED "\nBLAD! Rok musi skladac sie z liczb.\n" RESET);
         }
         wyczysc_bufor();
     }
@@ -86,7 +78,7 @@ void usun_samochod(Samochod **lista_samochodow){
         zaczekaj();
         return;
     }
-    // zla rejestracja = sprawdz ponownie
+
     // DODAC SPRAWDZANIE CZY SAMOCHOD NIE JEST AKTUALNIE WYPOZYCZONY
 
     system(CLEAR);
@@ -136,15 +128,13 @@ void wyswietl_samochody(Samochod *lista_samochodow){
     }
     system(CLEAR);
     Samochod *temp = lista_samochodow;
-    int licznik = 1;
     while (temp != NULL) {
-        printf(GREEN "%d. Rejestracja " RESET BOLD "[%s]:" RESET, licznik, temp->nr_rejestracyjny);
-        printf("\n  - Marka: %s", temp->marka);
-        printf("\n  - Model: %s", temp->model);
-        printf("\n  - Kolor: %s", temp->kolor);
-        printf("\n  - Rok produkcji: %d\n", temp->rok_produkcji);
+        printf(GREEN "Rejestracja " RESET BOLD "(%s):" RESET, temp->nr_rejestracyjny);
+        printf("\n  Marka: %s", temp->marka);
+        printf("\n  Model: %s", temp->model);
+        printf("\n  Kolor: %s", temp->kolor);
+        printf("\n  Rok produkcji: %d\n", temp->rok_produkcji);
         temp = temp->next;
-        licznik++;
     }
     zaczekaj();
 }
