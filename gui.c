@@ -4,12 +4,13 @@
 #include "utils.h"
 #include "clients.h"
 #include "files.h"
+#include "rentals.h"
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include <unistd.h>
 
-void menu_glowne(Samochod **lista_samochodow, Klient **lista_klientow){
+void menu_glowne(Samochod **lista_samochodow, Klient **lista_klientow, Wypozyczenie **lista_wypozyczen){
     int wybor;
     bool status = true;
     while (status) {
@@ -41,7 +42,7 @@ void menu_glowne(Samochod **lista_samochodow, Klient **lista_klientow){
                 menu_klient(lista_klientow);
                 break;
             case 3:
-                menu_wypozyczenie();
+                menu_wypozyczenie(lista_wypozyczen);
                 break;
             case 0:
                 printf("\n");
@@ -162,7 +163,7 @@ void menu_klient(Klient **lista_klientow){
     }
 }
 
-void menu_wypozyczenie(){
+void menu_wypozyczenie(Wypozyczenie **lista_wypozyczen){
     int wybor;
     bool status = true;
     while (status) {
@@ -188,13 +189,13 @@ void menu_wypozyczenie(){
 
         switch (wybor) {
             case 1:
-                // dodawnie wypozyczenia
+                //dodaj_wypozyczenie();
                 break;
             case 2:
-                // usuwanie wypozyczenia
+                //usun_wypozyczenie();
                 break;
             case 3:
-                // lista aktualnie wypozyczonych
+                //wyswietl_wypozyczenia();
                 break;
             case 0:
                 status = false;

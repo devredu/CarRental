@@ -80,7 +80,6 @@ void usun_samochod(Samochod **lista_samochodow){
     }
 
     // DODAC SPRAWDZANIE CZY SAMOCHOD NIE JEST AKTUALNIE WYPOZYCZONY
-
     system(CLEAR);
     printf("===============================\n");
     printf(BOLD "      USUWANIE SAMOCHODU    \n" RESET);

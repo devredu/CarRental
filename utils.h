@@ -6,7 +6,7 @@
     #define CLEAR "cls"
 #else
     #define CLEAR "clear"
-    #define Sleep(ms) usleep((ms) * 1000)
+    #define Sleep(ms) usleep((ms) * 500)
 #endif
 
 void zaczekaj();
