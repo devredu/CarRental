@@ -128,13 +128,15 @@ void wyswietl_samochody(Samochod *lista_samochodow){
     }
     system(CLEAR);
     Samochod *temp = lista_samochodow;
+    int licznik = 1;
     while (temp != NULL) {
-        printf(GREEN "Rejestracja " RESET BOLD "(%s):" RESET, temp->nr_rejestracyjny);
+        printf(GREEN "%d. Rejestracja " RESET BOLD "(%s):" RESET, licznik, temp->nr_rejestracyjny);
         printf("\n  Marka: %s", temp->marka);
         printf("\n  Model: %s", temp->model);
         printf("\n  Kolor: %s", temp->kolor);
         printf("\n  Rok produkcji: %d\n", temp->rok_produkcji);
         temp = temp->next;
+        licznik++;
     }
     zaczekaj();
 }
