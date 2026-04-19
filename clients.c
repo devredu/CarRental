@@ -16,9 +16,9 @@ void dodaj_klienta(Klient **lista_klientow){
     nowy->next = NULL;
 
     system(CLEAR);
-    printf("===============================\n");
-    printf(BOLD "      DODAWANIE KLIENTOW    \n" RESET);
-    printf("===============================\n");
+    printf("=====================================\n");
+    printf("| " BOLD "       DODAWANIE KLIENTOW         " RESET "|\n");
+    printf("=====================================\n");
     while (true) {
         printf("Podaj numer karty klienta (0-9999): ");
         if (scanf("%d", &nowy->numer_karty) == 1) {
@@ -109,9 +109,9 @@ void usun_klienta(Klient **lista_klientow){
     // no jakes sprawdzenie trzeba dodac czy klient nie ma wypozyczonego auta aktualnie czy cos takieigo
 
     system(CLEAR);
-    printf("===============================\n");
-    printf(BOLD "      USUWANIE KLIENTA    \n" RESET);
-    printf("===============================\n");
+    printf("=====================================\n");
+    printf("| " BOLD "        USUWANIE KLIENTOW         " RESET "|\n");
+    printf("=====================================\n");
     int numer_karty;
     printf("Podaj numer karty klienta do usuniecia: ");
     scanf("%d", &numer_karty);

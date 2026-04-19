@@ -14,9 +14,9 @@ void dodaj_samochod(Samochod **lista_samochodow){
     nowy->next = NULL;
 
     system(CLEAR);
-    printf("===============================\n");
-    printf(BOLD "      DODAWANIE SAMOCHODU    \n" RESET);
-    printf("===============================\n");
+    printf("=====================================\n");
+    printf("| " BOLD "       DODAWANIE SAMOCHODU        " RESET "|\n");
+    printf("=====================================\n");
     printf("Podaj numer rejestracyjny samochodu: ");
     scanf("%19s", nowy->nr_rejestracyjny);
     wyczysc_bufor();
@@ -81,9 +81,9 @@ void usun_samochod(Samochod **lista_samochodow){
 
     // DODAC SPRAWDZANIE CZY SAMOCHOD NIE JEST AKTUALNIE WYPOZYCZONY
     system(CLEAR);
-    printf("===============================\n");
-    printf(BOLD "      USUWANIE SAMOCHODU    \n" RESET);
-    printf("===============================\n");
+    printf("=====================================\n");
+    printf("| " BOLD "        USUWANIE SAMOCHODU        " RESET "|\n");
+    printf("=====================================\n");
     char szukana_rejestracja[20];
     printf("Podaj numer rejestracyjny samochodu do usuniecia: ");
     scanf("%19s", szukana_rejestracja);
