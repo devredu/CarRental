@@ -65,11 +65,11 @@ void dodaj_klienta(Klient **lista_klientow){
     while (true) {
         printf("Podaj numer telefonu (9 cyfr): ");
         scanf("%s", nowy->numer_telefonu);
+        wyczysc_bufor();
         if (strlen(nowy->numer_telefonu) != 9) {
             printf(BOLD_RED "\nBLAD! Numer telefonu musi miec dokladnie 9 cyfr.\n\n" RESET);
             continue;
         }
-        wyczysc_bufor();
         int czy_cyfry = 1;
         for (int i = 0; i < 9; i++) {
             if (!isdigit(nowy->numer_telefonu[i])) {
@@ -105,7 +105,6 @@ void usun_klienta(Klient **lista_klientow){
         zaczekaj();
         return;
     }
-
     // no jakes sprawdzenie trzeba dodac czy klient nie ma wypozyczonego auta aktualnie czy cos takieigo
 
     system(CLEAR);
@@ -142,6 +141,71 @@ void usun_klienta(Klient **lista_klientow){
     }
     printf("\a");
     printf(BOLD_RED "\nBLAD! Nie znaleziono klienta o podanym numerze karty." RESET);
+    zaczekaj();
+}
+
+void edytuj_klienta(Klient **lista_klientow){
+    if (*lista_klientow == NULL) {
+        printf("\a");
+        printf(BOLD_RED "\nBLAD! Lista jest pusta. Musisz najpierw dodac klientow!" RESET);
+        zaczekaj();
+        return;
+    }
+
+    system(CLEAR);
+    printf("=====================================\n");
+    printf("| " BOLD "        EDYCJA KLIENTA            " RESET "|\n");
+    printf("=====================================\n");
+    int numer_karty;
+    printf("Podaj numer karty klienta, ktorego chcesz edytowac: ");
+    scanf("%d", &numer_karty);
+    wyczysc_bufor();
+
+    Klient *temp = *lista_klientow;
+    while (temp != NULL) {
+        if (temp->numer_karty == numer_karty) {
+            printf("Podaj imie (obecne: %s): ", temp->imie);
+            scanf("%19s", temp->imie);
+            wyczysc_bufor();
+            zamien_na_wielkie(temp->imie);
+            printf("Podaj nazwisko (obecne: %s): ", temp->nazwisko);
+            scanf("%29s", temp->nazwisko);
+            wyczysc_bufor();
+            zamien_na_wielkie(temp->nazwisko);
+            printf("Podaj adres (obecny: %s): ", temp->adres);
+            scanf(" %29[^\n]", temp->adres);
+            wyczysc_bufor();
+            zamien_na_wielkie(temp->adres);
+            while (true) {
+                printf("Podaj numer telefonu (obecny: %s): ", temp->numer_telefonu);
+                scanf("%s", temp->numer_telefonu);
+                wyczysc_bufor();
+                if (strlen(temp->numer_telefonu) != 9) {
+                    printf(BOLD_RED "\nBLAD! Numer telefonu musi miec dokladnie 9 cyfr.\n\n" RESET);
+                    continue;
+                }
+                int czy_cyfry = 1;
+                for (int i = 0; i < 9; i++) {
+                    if (!isdigit(temp->numer_telefonu[i])) {
+                        czy_cyfry = 0;
+                        break;
+                    }
+                }
+                if (czy_cyfry == 0) {
+                    printf("\a");
+                    printf(BOLD_RED "\nBLAD! Numer moze zawierac tylko cyfry.\n\n" RESET);
+                    continue;
+                }
+                break;
+            }
+            printf(GREEN "\nPomyslnie edytowano klienta!" RESET);
+            zaczekaj();
+            return;
+        }
+        temp = temp->next;
+    }
+    printf("\a");
+    printf(BOLD_RED "\nBLAD! Nie znaleziono klienta o tym numerze." RESET);
     zaczekaj();
 }
 

@@ -96,7 +96,7 @@ void menu_samochod(Samochod **lista_samochodow){
                 usun_samochod(lista_samochodow);
                 break;
             case 3:
-                // edytowanie samochodu
+                edytuj_samochod(lista_samochodow);
                 break;
             case 4:
                 wyswietl_samochody(*lista_samochodow);
@@ -146,7 +146,7 @@ void menu_klient(Klient **lista_klientow){
                 usun_klienta(lista_klientow);
                 break;
             case 3:
-                // edytowaniie klientow
+                edytuj_klienta(lista_klientow);
                 break;
             case 4:
                 wyswietl_klientow(*lista_klientow);
@@ -189,7 +189,7 @@ void menu_wypozyczenie(Wypozyczenie **lista_wypozyczen){
 
         switch (wybor) {
             case 1:
-                //dodaj_wypozyczenie();
+                dodaj_wypozyczenie(lista_wypozyczen);
                 break;
             case 2:
                 //usun_wypozyczenie();

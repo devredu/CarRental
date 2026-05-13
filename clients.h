@@ -5,6 +5,7 @@
 
 void dodaj_klienta(Klient **lista_klientow);
 void usun_klienta(Klient **lista_klientow);
+void edytuj_klienta(Klient **lista_klientow);
 void wyswietl_klientow(Klient *lista_klientow);
 
 #endif //CARRENTAL_CLIENTS_H

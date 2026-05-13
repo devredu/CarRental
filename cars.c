@@ -32,14 +32,14 @@ void dodaj_samochod(Samochod **lista_samochodow){
         sprawdzenie = sprawdzenie->next;
     }
     printf("Podaj marke samochodu: ");
-    scanf("%19s", nowy->marka);
+    scanf(" %19[^\n]", nowy->marka);
     wyczysc_bufor();
     zamien_na_wielkie(nowy->marka);
     printf("Podaj model samochodu: ");
-    scanf("%29s", nowy->model);
+    scanf(" %29[^\n]", nowy->model);
     wyczysc_bufor();
     zamien_na_wielkie(nowy->model);
-    printf("Podaj kolor samochodu: ");
+    printf("Podaj glowny kolor samochodu: ");
     scanf("%29s", nowy->kolor);
     wyczysc_bufor();
     zamien_na_wielkie(nowy->kolor);
@@ -113,6 +113,69 @@ void usun_samochod(Samochod **lista_samochodow){
         poprzedni = temp;
         temp = temp->next;
     }
+    printf("\a");
+    printf(BOLD_RED "\nBLAD! Nie znaleziono samochodu o podanym numerze rejestracyjnym." RESET);
+    zaczekaj();
+}
+
+void edytuj_samochod(Samochod **lista_samochodow){
+    if (*lista_samochodow == NULL) {
+        printf("\a");
+        printf(BOLD_RED "\nBLAD! Lista jest pusta. Musisz najpierw dodac jakis samochod!" RESET);
+        zaczekaj();
+        return;
+    }
+
+    system(CLEAR);
+    printf("=====================================\n");
+    printf("| " BOLD "        EDYCJA SAMOCHODU          " RESET "|\n");
+    printf("=====================================\n");
+
+    char szukana_rejestracja[20];
+    printf("Podaj numer rejestracyjny samochodu do edycji: ");
+    scanf("%19s", szukana_rejestracja);
+    wyczysc_bufor();
+    zamien_na_wielkie(szukana_rejestracja);
+
+    Samochod *temp = *lista_samochodow;
+    while (temp != NULL) {
+        if (strcmp(temp->nr_rejestracyjny, szukana_rejestracja) == 0) {
+            printf("Podaj marke (obecna: %s): ", temp->marka);
+            scanf(" %19[^\n]", temp->marka);
+            wyczysc_bufor();
+            zamien_na_wielkie(temp->marka);
+            printf("Podaj model (obecny: %s): ", temp->model);
+            scanf(" %29[^\n]", temp->model);
+            wyczysc_bufor();
+            zamien_na_wielkie(temp->model);
+            printf("Podaj glowny kolor (obecny: %s): ", temp->kolor);
+            scanf("%29s", temp->kolor);
+            wyczysc_bufor();
+            zamien_na_wielkie(temp->kolor);
+            while (1) {
+                printf("Podaj rok produkcji (obecny: %d): ", temp->rok_produkcji);
+                if (scanf("%d", &temp->rok_produkcji) == 1) {
+                    if (temp->rok_produkcji > 1900 && temp->rok_produkcji <= 2026) {
+                        wyczysc_bufor();
+                        break;
+                    } else {
+                        printf("\a");
+                        printf(BOLD_RED "\nBLAD! Podaj prawidlowy rok (1900-2026).\n\n" RESET);
+                    }
+                } else {
+                    printf("\a");
+                    printf(BOLD_RED "\nBLAD! Rok musi skladac sie z liczb.\n\n" RESET);
+                }
+                wyczysc_bufor();
+            }
+
+            printf(GREEN "\nPomyslnie edytowano samochod!" RESET);
+            zaczekaj();
+            return;
+        }
+        temp = temp->next;
+    }
+
     printf("\a");
     printf(BOLD_RED "\nBLAD! Nie znaleziono samochodu o podanym numerze rejestracyjnym." RESET);
     zaczekaj();
