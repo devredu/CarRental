@@ -8,7 +8,6 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#include <unistd.h>
 
 void menu_glowne(Samochod **lista_samochodow, Klient **lista_klientow, Wypozyczenie **lista_wypozyczen){
     int wybor;
@@ -42,13 +41,14 @@ void menu_glowne(Samochod **lista_samochodow, Klient **lista_klientow, Wypozycze
                 menu_klient(lista_klientow);
                 break;
             case 3:
-                menu_wypozyczenie(lista_wypozyczen);
+                menu_wypozyczenie(lista_samochodow, lista_klientow, lista_wypozyczen);
                 break;
             case 0:
                 printf("\n");
                 printf("Zapisywanie...\n");
                 zapisz_samochody(*lista_samochodow);
                 zapisz_klientow(*lista_klientow);
+                zapisz_wypozyczenia(*lista_wypozyczen);
                 Sleep(500);
                 printf("Zamykanie...");
                 Sleep(1000);
@@ -163,7 +163,7 @@ void menu_klient(Klient **lista_klientow){
     }
 }
 
-void menu_wypozyczenie(Wypozyczenie **lista_wypozyczen){
+void menu_wypozyczenie(Samochod **lista_samochodow, Klient **lista_klientow, Wypozyczenie **lista_wypozyczen){
     int wybor;
     bool status = true;
     while (status) {
@@ -189,7 +189,7 @@ void menu_wypozyczenie(Wypozyczenie **lista_wypozyczen){
 
         switch (wybor) {
             case 1:
-                dodaj_wypozyczenie(lista_wypozyczen);
+                dodaj_wypozyczenie(*lista_samochodow, *lista_klientow, lista_wypozyczen);
                 break;
             case 2:
                 //usun_wypozyczenie();

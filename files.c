@@ -1,5 +1,5 @@
 #include "files.h"
-#include "gui.h"
+#include "utils.h"
 #include "structs.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -96,6 +96,60 @@ void wczytaj_klientow(Klient **lista_klientow){
                 temp = temp->next;
             }
             temp->next = nowy;
+        }
+    }
+    fclose(plik);
+}
+
+void zapisz_wypozyczenia(Wypozyczenie *lista_wypozyczen) {
+    FILE *plik = fopen("wypozyczenia.txt", "w");
+
+    if (plik == NULL) {
+        printf(BOLD_RED "BLAD! Nie mozna utworzyc pliku 'wypozyczenia.txt'." RESET);
+        return;
+    }
+
+    Wypozyczenie *temp = lista_wypozyczen;
+    while (temp != NULL) {
+        fprintf(plik, "%d;%s;%s;%s\n",
+                temp->numer_karty_klienta,
+                temp->nr_rejestracyjny,
+                temp->data_od,
+                temp->data_do);
+        temp = temp->next;
+    }
+    fclose(plik);
+}
+
+void wczytaj_wypozyczenia(Wypozyczenie **lista_wypozyczen) {
+    FILE *plik = fopen("wypozyczenia.txt", "r");
+    if (plik == NULL) {
+        return;
+    }
+
+    int nr_karty;
+    char nr_rej[20], data_od[11], data_do[11];
+
+    while (fscanf(plik, " %d;%19[^;];%10[^;];%10[^\n]", &nr_karty, nr_rej, data_od, data_do) == 4) {
+        Wypozyczenie *nowe = (Wypozyczenie*)malloc(sizeof(Wypozyczenie));
+        if (nowe == NULL) {
+            break;
+        }
+
+        nowe->numer_karty_klienta = nr_karty;
+        strcpy(nowe->nr_rejestracyjny, nr_rej);
+        strcpy(nowe->data_od, data_od);
+        strcpy(nowe->data_do, data_do);
+        nowe->next = NULL;
+
+        if (*lista_wypozyczen == NULL) {
+            *lista_wypozyczen = nowe;
+        } else {
+            Wypozyczenie *temp = *lista_wypozyczen;
+            while (temp->next != NULL) {
+                temp = temp->next;
+            }
+            temp->next = nowe;
         }
     }
     fclose(plik);

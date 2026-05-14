@@ -24,8 +24,8 @@ typedef struct Klient {
 typedef struct Wypozyczenie {
     int numer_karty_klienta;
     char nr_rejestracyjny[20];
-    char data_od[15];
-    char data_do[15];
+    char data_od[11];
+    char data_do[11];
     struct Wypozyczenie *next;
 } Wypozyczenie;
 

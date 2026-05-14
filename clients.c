@@ -1,6 +1,5 @@
 #include "clients.h"
 #include "structs.h"
-#include "gui.h"
 #include "utils.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,36 +18,37 @@ void dodaj_klienta(Klient **lista_klientow){
     printf("=====================================\n");
     printf("| " BOLD "       DODAWANIE KLIENTOW         " RESET "|\n");
     printf("=====================================\n");
-    while (true) {
-        printf("Podaj numer karty klienta (0-9999): ");
-        if (scanf("%d", &nowy->numer_karty) == 1) {
-            if (nowy->numer_karty > 0 && nowy->numer_karty <= 9999) {
-                int duplikat = 0;
-                Klient *sprawdzenie = *lista_klientow;
-                while (sprawdzenie != NULL) {
-                    if (sprawdzenie->numer_karty == nowy->numer_karty) {
-                        printf("\a");
-                        printf(BOLD_RED "\nBLAD! Klient o takim numerze karty jest juz dodany!\n\n" RESET);
-                        duplikat = 1;
-                        break;
-                    }
-                    sprawdzenie = sprawdzenie->next;
-                }
-                if (duplikat) {
+    printf("Podaj numer karty klienta (0-9999): ");
+    if (scanf("%d", &nowy->numer_karty) == 1) {
+        if (nowy->numer_karty > 0 && nowy->numer_karty <= 9999) {
+            Klient *temp = *lista_klientow;
+            while (temp != NULL) {
+                if (temp->numer_karty == nowy->numer_karty) {
+                    printf("\a");
+                    printf(BOLD_RED "\nBLAD! Klient o takim numerze karty jest juz dodany." RESET);
+                    free(nowy);
                     wyczysc_bufor();
-                    continue;
+                    zaczekaj();
+                    return;
                 }
-                wyczysc_bufor();
-                break;
-            } else {
-                printf("\a");
-                printf(BOLD_RED "\nBLAD! Podaj prawidlowy numer karty (0000-9999).\n\n" RESET);
+                temp = temp->next;
             }
+            wyczysc_bufor();
         } else {
             printf("\a");
-            printf(BOLD_RED "\nBLAD! Numer karty moze zawierac tylko cyfry.\n\n" RESET);
+            printf(BOLD_RED "\nBLAD! Podaj prawidlowy numer karty (0-9999)." RESET);
+            free(nowy);
+            wyczysc_bufor();
+            zaczekaj();
+            return;
         }
+    } else {
+        printf("\a");
+        printf(BOLD_RED "\nBLAD! Numer karty musi skladac sie z cyfr." RESET);
+        free(nowy);
         wyczysc_bufor();
+        zaczekaj();
+        return;
     }
     printf("Podaj imie: ");
     scanf("%19s", nowy->imie);
@@ -67,19 +67,19 @@ void dodaj_klienta(Klient **lista_klientow){
         scanf("%s", nowy->numer_telefonu);
         wyczysc_bufor();
         if (strlen(nowy->numer_telefonu) != 9) {
-            printf(BOLD_RED "\nBLAD! Numer telefonu musi miec dokladnie 9 cyfr.\n\n" RESET);
+            printf(BOLD_RED "\nBLAD! Numer telefonu musi miec dokladnie 9 cyfr.\n" RESET);
             continue;
         }
-        int czy_cyfry = 1;
+        int sprawdz_cyfry = 1;
         for (int i = 0; i < 9; i++) {
             if (!isdigit(nowy->numer_telefonu[i])) {
-                czy_cyfry = 0;
+                sprawdz_cyfry = 0;
                 break;
             }
         }
-        if (czy_cyfry == 0) {
+        if (sprawdz_cyfry == 0) {
             printf("\a");
-            printf(BOLD_RED "\nBLAD! Numer moze zawierac tylko cyfry.\n\n" RESET);
+            printf(BOLD_RED "\nBLAD! Numer musi skladac sie z liczb.\n" RESET);
             continue;
         }
         break;
@@ -101,7 +101,7 @@ void dodaj_klienta(Klient **lista_klientow){
 void usun_klienta(Klient **lista_klientow){
     if (*lista_klientow == NULL) {
         printf("\a");
-        printf(BOLD_RED "\nBLAD! Lista jest pusta. Musisz najpierw dodac klientow!" RESET);
+        printf(BOLD_RED "\nBLAD! Lista jest pusta. Musisz najpierw dodac klientow." RESET);
         zaczekaj();
         return;
     }
@@ -116,28 +116,28 @@ void usun_klienta(Klient **lista_klientow){
     scanf("%d", &numer_karty);
     wyczysc_bufor();
 
-    Klient *temp = *lista_klientow;
+    Klient *temp_klient = *lista_klientow;
 
-    if (numer_karty == temp->numer_karty) {
-        *lista_klientow = temp->next;
-        free(temp);
+    if (numer_karty == temp_klient->numer_karty) {
+        *lista_klientow = temp_klient->next;
+        free(temp_klient);
         printf(GREEN "\nPomyslnie usunieto klienta!" RESET);
         zaczekaj();
         return;
     }
-    Klient *poprzedni = temp;
-    temp = temp->next;
+    Klient *poprzedni = temp_klient;
+    temp_klient = temp_klient->next;
 
-    while (temp != NULL) {
-        if (numer_karty == temp->numer_karty) {
-            poprzedni->next = temp->next;
-            free(temp);
+    while (temp_klient != NULL) {
+        if (numer_karty == temp_klient->numer_karty) {
+            poprzedni->next = temp_klient->next;
+            free(temp_klient);
             printf(GREEN "\nPomyslnie usunieto klienta!" RESET);
             zaczekaj();
             return;
         }
-        poprzedni = temp;
-        temp = temp->next;
+        poprzedni = temp_klient;
+        temp_klient = temp_klient->next;
     }
     printf("\a");
     printf(BOLD_RED "\nBLAD! Nie znaleziono klienta o podanym numerze karty." RESET);
@@ -147,7 +147,7 @@ void usun_klienta(Klient **lista_klientow){
 void edytuj_klienta(Klient **lista_klientow){
     if (*lista_klientow == NULL) {
         printf("\a");
-        printf(BOLD_RED "\nBLAD! Lista jest pusta. Musisz najpierw dodac klientow!" RESET);
+        printf(BOLD_RED "\nBLAD! Lista jest pusta. Musisz najpierw dodac klientow." RESET);
         zaczekaj();
         return;
     }
@@ -160,7 +160,6 @@ void edytuj_klienta(Klient **lista_klientow){
     printf("Podaj numer karty klienta, ktorego chcesz edytowac: ");
     scanf("%d", &numer_karty);
     wyczysc_bufor();
-
     Klient *temp = *lista_klientow;
     while (temp != NULL) {
         if (temp->numer_karty == numer_karty) {
@@ -177,25 +176,27 @@ void edytuj_klienta(Klient **lista_klientow){
             wyczysc_bufor();
             zamien_na_wielkie(temp->adres);
             while (true) {
+                char nowy_numer_telefonu[10];
                 printf("Podaj numer telefonu (obecny: %s): ", temp->numer_telefonu);
-                scanf("%s", temp->numer_telefonu);
+                scanf("%s", nowy_numer_telefonu);
                 wyczysc_bufor();
-                if (strlen(temp->numer_telefonu) != 9) {
-                    printf(BOLD_RED "\nBLAD! Numer telefonu musi miec dokladnie 9 cyfr.\n\n" RESET);
+                if (strlen(nowy_numer_telefonu) != 9) {
+                    printf(BOLD_RED "\nBLAD! Numer telefonu musi miec dokladnie 9 cyfr.\n" RESET);
                     continue;
                 }
                 int czy_cyfry = 1;
                 for (int i = 0; i < 9; i++) {
-                    if (!isdigit(temp->numer_telefonu[i])) {
+                    if (!isdigit(nowy_numer_telefonu[i])) {
                         czy_cyfry = 0;
                         break;
                     }
                 }
                 if (czy_cyfry == 0) {
                     printf("\a");
-                    printf(BOLD_RED "\nBLAD! Numer moze zawierac tylko cyfry.\n\n" RESET);
+                    printf(BOLD_RED "\nBLAD! Numer musi skladac sie z cyfr.\n" RESET);
                     continue;
                 }
+                strcpy(temp->numer_telefonu, nowy_numer_telefonu);
                 break;
             }
             printf(GREEN "\nPomyslnie edytowano klienta!" RESET);
@@ -212,7 +213,7 @@ void edytuj_klienta(Klient **lista_klientow){
 void wyswietl_klientow(Klient *lista_klientow){
     if (lista_klientow == NULL) {
         printf("\a");
-        printf(BOLD_RED "\nBLAD! Lista jest pusta. Musisz najpierw dodac klientow!" RESET);
+        printf(BOLD_RED "\nBLAD! Lista jest pusta. Musisz najpierw dodac klientow." RESET);
         zaczekaj();
         return;
     }

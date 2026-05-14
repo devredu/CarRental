@@ -1,6 +1,5 @@
 #include "cars.h"
 #include "structs.h"
-#include "gui.h"
 #include "utils.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -21,15 +20,16 @@ void dodaj_samochod(Samochod **lista_samochodow){
     scanf("%19s", nowy->nr_rejestracyjny);
     wyczysc_bufor();
     zamien_na_wielkie(nowy->nr_rejestracyjny);
-    Samochod *sprawdzenie = *lista_samochodow;
-    while (sprawdzenie != NULL) {
-        if (strcmp(sprawdzenie->nr_rejestracyjny, nowy->nr_rejestracyjny) == 0) {
-            printf(BOLD_RED "\nBLAD! Samochod o takiej rejestracji jest juz dodany!" RESET);
+    Samochod *temp = *lista_samochodow;
+    while (temp != NULL) {
+        if (strcmp(temp->nr_rejestracyjny, nowy->nr_rejestracyjny) == 0) {
+            printf("\a");
+            printf(BOLD_RED "\nBLAD! Samochod o takiej rejestracji jest juz dodany." RESET);
             free(nowy);
             zaczekaj();
             return;
         }
-        sprawdzenie = sprawdzenie->next;
+        temp = temp->next;
     }
     printf("Podaj marke samochodu: ");
     scanf(" %19[^\n]", nowy->marka);
@@ -43,17 +43,19 @@ void dodaj_samochod(Samochod **lista_samochodow){
     scanf("%29s", nowy->kolor);
     wyczysc_bufor();
     zamien_na_wielkie(nowy->kolor);
-    while (1) {
+    while (true) {
         printf("Podaj rok produkcji samochodu: ");
         if (scanf("%d", &nowy->rok_produkcji) == 1) {
             if (nowy->rok_produkcji > 1900 && nowy->rok_produkcji <= 2026) {
                 wyczysc_bufor();
                 break;
             } else {
+                printf("\a");
                 printf(BOLD_RED "\nBLAD! Podaj prawidlowy rok (1900-2026).\n" RESET);
             }
         } else {
-            printf(BOLD_RED "\nBLAD! Rok musi skladac sie z liczb.\n" RESET);
+            printf("\a");
+            printf(BOLD_RED "\nBLAD! Rok musi skladac sie z cyfr.\n" RESET);
         }
         wyczysc_bufor();
     }
@@ -63,7 +65,7 @@ void dodaj_samochod(Samochod **lista_samochodow){
     if (*lista_samochodow == NULL) {
         *lista_samochodow = nowy;
     } else {
-        Samochod *temp = *lista_samochodow;
+        temp = *lista_samochodow;
         while (temp->next != NULL) {
             temp = temp->next;
         }
@@ -74,7 +76,7 @@ void dodaj_samochod(Samochod **lista_samochodow){
 void usun_samochod(Samochod **lista_samochodow){
     if (*lista_samochodow == NULL) {
         printf("\a");
-        printf(BOLD_RED "\nBLAD! Lista jest pusta. Musisz najpierw dodac jakis samochod!" RESET);
+        printf(BOLD_RED "\nBLAD! Lista jest pusta. Musisz najpierw dodac samochody." RESET);
         zaczekaj();
         return;
     }
@@ -121,7 +123,7 @@ void usun_samochod(Samochod **lista_samochodow){
 void edytuj_samochod(Samochod **lista_samochodow){
     if (*lista_samochodow == NULL) {
         printf("\a");
-        printf(BOLD_RED "\nBLAD! Lista jest pusta. Musisz najpierw dodac jakis samochod!" RESET);
+        printf(BOLD_RED "\nBLAD! Lista jest pusta. Musisz najpierw dodac samochody." RESET);
         zaczekaj();
         return;
     }
@@ -153,29 +155,29 @@ void edytuj_samochod(Samochod **lista_samochodow){
             wyczysc_bufor();
             zamien_na_wielkie(temp->kolor);
             while (1) {
+                int nowy_rok;
                 printf("Podaj rok produkcji (obecny: %d): ", temp->rok_produkcji);
-                if (scanf("%d", &temp->rok_produkcji) == 1) {
-                    if (temp->rok_produkcji > 1900 && temp->rok_produkcji <= 2026) {
+                if (scanf("%d", &nowy_rok) == 1) {
+                    if (nowy_rok > 1900 && nowy_rok <= 2026) {
+                        temp->rok_produkcji = nowy_rok;
                         wyczysc_bufor();
                         break;
                     } else {
                         printf("\a");
-                        printf(BOLD_RED "\nBLAD! Podaj prawidlowy rok (1900-2026).\n\n" RESET);
+                        printf(BOLD_RED "\nBLAD! Podaj prawidlowy rok (1900-2026).\n" RESET);
                     }
                 } else {
                     printf("\a");
-                    printf(BOLD_RED "\nBLAD! Rok musi skladac sie z liczb.\n\n" RESET);
+                    printf(BOLD_RED "\nBLAD! Rok musi skladac sie z cyfr.\n" RESET);
                 }
                 wyczysc_bufor();
             }
-
             printf(GREEN "\nPomyslnie edytowano samochod!" RESET);
             zaczekaj();
             return;
         }
         temp = temp->next;
     }
-
     printf("\a");
     printf(BOLD_RED "\nBLAD! Nie znaleziono samochodu o podanym numerze rejestracyjnym." RESET);
     zaczekaj();
@@ -184,7 +186,7 @@ void edytuj_samochod(Samochod **lista_samochodow){
 void wyswietl_samochody(Samochod *lista_samochodow){
     if (lista_samochodow == NULL) {
         printf("\a");
-        printf(BOLD_RED "\nBLAD! Lista jest pusta. Musisz najpierw dodac jakis samochod!" RESET);
+        printf(BOLD_RED "\nBLAD! Lista jest pusta. Musisz najpierw dodac samochody." RESET);
         zaczekaj();
         return;
     }
