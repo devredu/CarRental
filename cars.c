@@ -59,6 +59,7 @@ void dodaj_samochod(Samochod **lista_samochodow){
         }
         wyczysc_bufor();
     }
+    nowy->status = 1;
     printf(GREEN "\nPomyslnie dodano samochod!" RESET);
     zaczekaj();
 
@@ -198,7 +199,12 @@ void wyswietl_samochody(Samochod *lista_samochodow){
         printf("\n  Marka: %s", temp->marka);
         printf("\n  Model: %s", temp->model);
         printf("\n  Kolor: %s", temp->kolor);
-        printf("\n  Rok produkcji: %d\n", temp->rok_produkcji);
+        printf("\n  Rok produkcji: %d", temp->rok_produkcji);
+        if (!temp->status) {
+            printf("\n  Status: " BOLD_RED "Wypozyczony\n" RESET);
+        } else {
+            printf("\n  Status: " GREEN "Dostepny\n" RESET);
+        }
         temp = temp->next;
         licznik++;
     }

@@ -34,7 +34,7 @@ bool waliduj_date(const char *data){
     }
     int rok, miesiac, dzien;
     sscanf(data, "%d-%d-%d", &rok, &miesiac, &dzien);
-    if (rok < 1900 || rok > 2100) {
+    if (rok < 2000 || rok > 2100) {
         return false;
     }
     if (miesiac < 1 || miesiac > 12) {

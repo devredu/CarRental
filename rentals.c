@@ -14,7 +14,7 @@ void dodaj_wypozyczenie(Samochod *lista_samochodow, Klient *lista_klientow, Wypo
 
     system(CLEAR);
     printf("=====================================\n");
-    printf("| " BOLD "       DODAWANIE WYPOZYCZENIA      " RESET "|\n");
+    printf("| " BOLD "       DODAWANIE WYPOZYCZENIA     " RESET "|\n");
     printf("=====================================\n");
     printf("Podaj numer karty klienta: ");
     int numer_karty;
@@ -53,16 +53,12 @@ void dodaj_wypozyczenie(Samochod *lista_samochodow, Klient *lista_klientow, Wypo
         zaczekaj();
         return;
     }
-    Wypozyczenie *temp_wypozyczenie = *lista_wypozyczen;
-    while (temp_wypozyczenie != NULL) {
-        if (strcmp(temp_wypozyczenie->nr_rejestracyjny, nr_rejestracyjny) == 0) {
-            printf("\a");
-            printf(BOLD_RED "\nBLAD! Samochod o takim numerze rejestracyjnym jest juz wypozyczony." RESET);
-            free(nowe);
-            zaczekaj();
-            return;
-        }
-        temp_wypozyczenie = temp_wypozyczenie->next;
+    if (temp_samochod->status == 0) {
+        printf("\a");
+        printf(BOLD_RED "\nBLAD! Samochod o takim numerze rejestracyjnym jest juz wypozyczony." RESET);
+        free(nowe);
+        zaczekaj();
+        return;
     }
     nowe->next = NULL;
     nowe->numer_karty_klienta = numer_karty;
@@ -94,6 +90,7 @@ void dodaj_wypozyczenie(Samochod *lista_samochodow, Klient *lista_klientow, Wypo
         }
         break;
     }
+    temp_samochod->status = 0;
     printf(GREEN "\nPomyslnie dodano wypozyczenie!" RESET);
     zaczekaj();
 

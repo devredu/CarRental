@@ -15,7 +15,7 @@ void zapisz_samochody(Samochod *lista_samochodow){
 
     Samochod *temp = lista_samochodow;
     while (temp != NULL) {
-        fprintf(plik, "%s;%s;%s;%s;%d\n", temp->nr_rejestracyjny, temp->marka, temp->model, temp->kolor, temp->rok_produkcji);
+        fprintf(plik, "%s;%s;%s;%s;%d;%d\n", temp->nr_rejestracyjny, temp->marka, temp->model, temp->kolor, temp->rok_produkcji, temp->status);
         temp = temp->next;
     }
     fclose(plik);
@@ -27,8 +27,8 @@ void wczytaj_samochody(Samochod **lista_samochodow){
         return;
     }
     char nr_rejestracyjny[20], marka[20], model[30], kolor[30];
-    int rok_produkcji;
-    while (fscanf(plik, " %19[^;];%19[^;];%29[^;];%29[^;];%d", nr_rejestracyjny, marka, model, kolor, &rok_produkcji) == 5) {
+    int rok_produkcji, status;
+    while (fscanf(plik, " %19[^;];%19[^;];%29[^;];%29[^;];%d;%d", nr_rejestracyjny, marka, model, kolor, &rok_produkcji, &status) == 6) {
         Samochod *nowy = (Samochod*)malloc(sizeof(Samochod));
         if (nowy == NULL) {
             break;
@@ -38,6 +38,7 @@ void wczytaj_samochody(Samochod **lista_samochodow){
         strcpy(nowy->model, model);
         strcpy(nowy->kolor, kolor);
         nowy->rok_produkcji = rok_produkcji;
+        nowy->status = status;
         nowy->next = NULL;
 
         if (*lista_samochodow == NULL) {

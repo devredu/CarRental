@@ -8,7 +8,7 @@ typedef struct Samochod {
     char model[30];
     int rok_produkcji;
     char kolor[30];
-    bool status;
+    int status;
     struct Samochod *next;
 } Samochod;
 
