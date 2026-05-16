@@ -35,10 +35,10 @@ void menu_glowne(Samochod **lista_samochodow, Klient **lista_klientow, Wypozycze
 
         switch (wybor) {
             case 1:
-                menu_samochod(lista_samochodow);
+                menu_samochod(lista_wypozyczen, lista_samochodow);
                 break;
             case 2:
-                menu_klient(lista_klientow);
+                menu_klient(lista_wypozyczen, lista_klientow);
                 break;
             case 3:
                 menu_wypozyczenie(lista_samochodow, lista_klientow, lista_wypozyczen);
@@ -63,7 +63,7 @@ void menu_glowne(Samochod **lista_samochodow, Klient **lista_klientow, Wypozycze
     }
 }
 
-void menu_samochod(Samochod **lista_samochodow){
+void menu_samochod(Wypozyczenie **lista_wypozyczen, Samochod **lista_samochodow){
     int wybor;
     bool status = true;
     while (status) {
@@ -75,6 +75,7 @@ void menu_samochod(Samochod **lista_samochodow){
         printf("| " GREEN "2. " RESET "Usun samochod                  |\n");
         printf("| " GREEN "3. " RESET "Edytuj samochod                |\n");
         printf("| " GREEN "4. " RESET "Wyswietl liste samochodow      |\n");
+        printf("| " GREEN "5. " RESET "Wyszukaj samochod              |\n");
         printf("| " GREEN "0. " RESET "Wroc do menu glownego          |\n");
         printf("-------------------------------------\n");
         printf("Wybor: ");
@@ -93,13 +94,16 @@ void menu_samochod(Samochod **lista_samochodow){
                 dodaj_samochod(lista_samochodow);
                 break;
             case 2:
-                usun_samochod(lista_samochodow);
+                usun_samochod(*lista_wypozyczen, lista_samochodow);
                 break;
             case 3:
                 edytuj_samochod(lista_samochodow);
                 break;
             case 4:
                 wyswietl_samochody(*lista_samochodow);
+                break;
+            case 5:
+                wyszukaj_samochod(*lista_samochodow);
                 break;
             case 0:
                 status = false;
@@ -113,7 +117,7 @@ void menu_samochod(Samochod **lista_samochodow){
     }
 }
 
-void menu_klient(Klient **lista_klientow){
+void menu_klient(Wypozyczenie **lista_wypozyczen, Klient **lista_klientow){
     int wybor;
     bool status = true;
     while (status) {
@@ -143,7 +147,7 @@ void menu_klient(Klient **lista_klientow){
                 dodaj_klienta(lista_klientow);
                 break;
             case 2:
-                usun_klienta(lista_klientow);
+                usun_klienta(*lista_wypozyczen, lista_klientow);
                 break;
             case 3:
                 edytuj_klienta(lista_klientow);
@@ -173,7 +177,8 @@ void menu_wypozyczenie(Samochod **lista_samochodow, Klient **lista_klientow, Wyp
         printf("=====================================\n");
         printf("| " GREEN "1. " RESET "Dodaj wypozyczenie             |\n");
         printf("| " GREEN "2. " RESET "Usun wypozyczenie              |\n");
-        printf("| " GREEN "3. " RESET "Wyswietl liste wypozyczen      |\n");
+        printf("| " GREEN "3. " RESET "Edytuj wypozyczenie            |\n");
+        printf("| " GREEN "4. " RESET "Wyswietl liste wypozyczen      |\n");
         printf("| " GREEN "0. " RESET "Wroc do menu glownego          |\n");
         printf("-------------------------------------\n");
         printf("Wybor: ");
@@ -192,10 +197,13 @@ void menu_wypozyczenie(Samochod **lista_samochodow, Klient **lista_klientow, Wyp
                 dodaj_wypozyczenie(*lista_samochodow, *lista_klientow, lista_wypozyczen);
                 break;
             case 2:
-                //usun_wypozyczenie();
+                usun_wypozyczenie(lista_samochodow, lista_wypozyczen);
                 break;
             case 3:
-                //wyswietl_wypozyczenia();
+                edytuj_wypozyczenie(lista_samochodow, lista_wypozyczen);
+                break;
+            case 4:
+                wyswietl_wypozyczenia(*lista_wypozyczen);
                 break;
             case 0:
                 status = false;

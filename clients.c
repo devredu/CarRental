@@ -98,14 +98,13 @@ void dodaj_klienta(Klient **lista_klientow){
     }
 }
 
-void usun_klienta(Klient **lista_klientow){
+void usun_klienta(Wypozyczenie *lista_wypozyczen, Klient **lista_klientow){
     if (*lista_klientow == NULL) {
         printf("\a");
         printf(BOLD_RED "\nBLAD! Lista jest pusta. Musisz najpierw dodac klientow." RESET);
         zaczekaj();
         return;
     }
-    // no jakes sprawdzenie trzeba dodac czy klient nie ma wypozyczonego auta aktualnie czy cos takieigo
 
     system(CLEAR);
     printf("=====================================\n");
@@ -115,6 +114,17 @@ void usun_klienta(Klient **lista_klientow){
     printf("Podaj numer karty klienta do usuniecia: ");
     scanf("%d", &numer_karty);
     wyczysc_bufor();
+
+    Wypozyczenie *temp_wypozyczenie = lista_wypozyczen;
+    while (temp_wypozyczenie != NULL) {
+        if (temp_wypozyczenie->numer_karty_klienta == numer_karty) {
+            printf("\a");
+            printf(BOLD_RED "\nBLAD! Nie mozesz usunac klienta, ktory ma wypozyczony samochod." RESET);
+            zaczekaj();
+            return;
+        }
+        temp_wypozyczenie = temp_wypozyczenie->next;
+    }
 
     Klient *temp_klient = *lista_klientow;
 

@@ -112,7 +112,8 @@ void zapisz_wypozyczenia(Wypozyczenie *lista_wypozyczen) {
 
     Wypozyczenie *temp = lista_wypozyczen;
     while (temp != NULL) {
-        fprintf(plik, "%d;%s;%s;%s\n",
+        fprintf(plik, "%s;%d;%s;%s;%s\n",
+                temp->numer_wypozyczenia,
                 temp->numer_karty_klienta,
                 temp->nr_rejestracyjny,
                 temp->data_od,
@@ -129,14 +130,14 @@ void wczytaj_wypozyczenia(Wypozyczenie **lista_wypozyczen) {
     }
 
     int nr_karty;
-    char nr_rej[20], data_od[11], data_do[11];
+    char nr_wypozyczernia[20], nr_rej[20], data_od[11], data_do[11];
 
-    while (fscanf(plik, " %d;%19[^;];%10[^;];%10[^\n]", &nr_karty, nr_rej, data_od, data_do) == 4) {
+    while (fscanf(plik, " %19[^;];%d;%19[^;];%10[^;];%10[^\n]", nr_wypozyczernia, &nr_karty, nr_rej, data_od, data_do) == 5) {
         Wypozyczenie *nowe = (Wypozyczenie*)malloc(sizeof(Wypozyczenie));
         if (nowe == NULL) {
             break;
         }
-
+        strcpy(nowe->numer_wypozyczenia, nr_wypozyczernia);
         nowe->numer_karty_klienta = nr_karty;
         strcpy(nowe->nr_rejestracyjny, nr_rej);
         strcpy(nowe->data_od, data_od);

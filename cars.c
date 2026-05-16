@@ -39,7 +39,7 @@ void dodaj_samochod(Samochod **lista_samochodow){
     scanf(" %29[^\n]", nowy->model);
     wyczysc_bufor();
     zamien_na_wielkie(nowy->model);
-    printf("Podaj glowny kolor samochodu: ");
+    printf("Podaj kolor samochodu: ");
     scanf("%29s", nowy->kolor);
     wyczysc_bufor();
     zamien_na_wielkie(nowy->kolor);
@@ -74,7 +74,7 @@ void dodaj_samochod(Samochod **lista_samochodow){
     }
 }
 
-void usun_samochod(Samochod **lista_samochodow){
+void usun_samochod(Wypozyczenie *lista_wypozyczen, Samochod **lista_samochodow){
     if (*lista_samochodow == NULL) {
         printf("\a");
         printf(BOLD_RED "\nBLAD! Lista jest pusta. Musisz najpierw dodac samochody." RESET);
@@ -82,7 +82,6 @@ void usun_samochod(Samochod **lista_samochodow){
         return;
     }
 
-    // DODAC SPRAWDZANIE CZY SAMOCHOD NIE JEST AKTUALNIE WYPOZYCZONY
     system(CLEAR);
     printf("=====================================\n");
     printf("| " BOLD "        USUWANIE SAMOCHODU        " RESET "|\n");
@@ -93,8 +92,18 @@ void usun_samochod(Samochod **lista_samochodow){
     wyczysc_bufor();
     zamien_na_wielkie(szukana_rejestracja);
 
-    Samochod *temp = *lista_samochodow;
+    Wypozyczenie *temp_wypozyczenie = lista_wypozyczen;
+    while (temp_wypozyczenie != NULL) {
+        if (strcmp(temp_wypozyczenie->nr_rejestracyjny, szukana_rejestracja) == 0) {
+            printf("\a");
+            printf(BOLD_RED "\nBLAD! Nie mozesz usunac samochodu, ktory jest wypozyczony." RESET);
+            zaczekaj();
+            return;
+        }
+        temp_wypozyczenie = temp_wypozyczenie->next;
+    }
 
+    Samochod *temp = *lista_samochodow;
     if (strcmp(temp->nr_rejestracyjny, szukana_rejestracja) == 0) {
         *lista_samochodow = temp->next;
         free(temp);
@@ -151,7 +160,7 @@ void edytuj_samochod(Samochod **lista_samochodow){
             scanf(" %29[^\n]", temp->model);
             wyczysc_bufor();
             zamien_na_wielkie(temp->model);
-            printf("Podaj glowny kolor (obecny: %s): ", temp->kolor);
+            printf("Podaj kolor (obecny: %s): ", temp->kolor);
             scanf("%29s", temp->kolor);
             wyczysc_bufor();
             zamien_na_wielkie(temp->kolor);
@@ -192,21 +201,141 @@ void wyswietl_samochody(Samochod *lista_samochodow){
         return;
     }
     system(CLEAR);
+    printf("=====================================\n");
+    printf("| " BOLD "    WYBIERZ SPOSOB SORTOWANIA     " RESET "|\n");
+    printf("=====================================\n");
+    printf("| " GREEN "1. " RESET "Wedlug numeru rejestracyjnego  |\n");
+    printf("| " GREEN "2. " RESET "Wedlug marki                   |\n");
+    printf("| " GREEN "3. " RESET "Wedlug koloru                  |\n");
+    printf("| " GREEN "4. " RESET "Wedlug roku produkcji          |\n");
+    printf("| " GREEN "5. " RESET "Wedlug statusu                 |\n");
+    printf("| " GREEN "6. " RESET "Bez sortowania                 |\n");
+    printf("-------------------------------------\n");
+    int wybor;
+    while (true) {
+        printf("Wybor: ");
+        if (scanf("%d", &wybor) != 1) {
+            printf("\a");
+            printf(BOLD_RED "\nBLAD! Wpisz liczbe.\n" RESET);
+            wyczysc_bufor();
+            continue;
+        }
+        wyczysc_bufor();
+        if (wybor >= 1 && wybor <= 6) {
+            break;
+        } else {
+            printf("\a");
+            printf(BOLD_RED "\nBLAD! Wybierz jedna z opcji.\n" RESET);
+        }
+    }
+
+    int ilosc = 0;
     Samochod *temp = lista_samochodow;
-    int licznik = 1;
     while (temp != NULL) {
-        printf(GREEN "%d. Rejestracja " RESET BOLD "(%s):" RESET, licznik, temp->nr_rejestracyjny);
-        printf("\n  Marka: %s", temp->marka);
-        printf("\n  Model: %s", temp->model);
-        printf("\n  Kolor: %s", temp->kolor);
-        printf("\n  Rok produkcji: %d", temp->rok_produkcji);
-        if (!temp->status) {
+        ilosc++;
+        temp = temp->next;
+    }
+
+    Samochod **tablica = (Samochod**)malloc(ilosc * sizeof(Samochod*));
+    temp = lista_samochodow;
+    for (int i = 0; i < ilosc; i++) {
+        tablica[i] = temp;
+        temp = temp->next;
+    }
+
+    if (wybor >= 1 && wybor <= 5) {
+        for (int i = 0; i < ilosc - 1; i++) {
+            for (int j = 0; j < ilosc - i - 1; j++) {
+                int zamien = 0;
+                switch (wybor) {
+                    case 1:
+                        if (strcmp(tablica[j]->nr_rejestracyjny, tablica[j+1]->nr_rejestracyjny) > 0) {
+                            zamien = 1;
+                        }
+                        break;
+                    case 2:
+                        if (strcmp(tablica[j]->marka, tablica[j+1]->marka) > 0) {
+                            zamien = 1;
+                        }
+                        break;
+                    case 3:
+                        if (strcmp(tablica[j]->kolor, tablica[j+1]->kolor) > 0) {
+                            zamien = 1;
+                        }
+                        break;
+                    case 4:
+                        if (tablica[j]->rok_produkcji > tablica[j+1]->rok_produkcji) {
+                            zamien = 1;
+                        }
+                        break;
+                    case 5:
+                        if (tablica[j]->status < tablica[j+1]->status) {
+                            zamien = 1;
+                        }
+                        break;
+                }
+                if (zamien) {
+                    Samochod *tmp = tablica[j];
+                    tablica[j] = tablica[j+1];
+                    tablica[j+1] = tmp;
+                }
+            }
+        }
+    }
+    system(CLEAR);
+    for (int i = 0; i < ilosc; i++) {
+        printf(GREEN "%d. Rejestracja " RESET BOLD "(%s):" RESET, i + 1, tablica[i]->nr_rejestracyjny);
+        printf("\n  Marka: %s", tablica[i]->marka);
+        printf("\n  Model: %s", tablica[i]->model);
+        printf("\n  Kolor: %s", tablica[i]->kolor);
+        printf("\n  Rok produkcji: %d", tablica[i]->rok_produkcji);
+        if (!tablica[i]->status) {
             printf("\n  Status: " BOLD_RED "Wypozyczony\n" RESET);
         } else {
             printf("\n  Status: " GREEN "Dostepny\n" RESET);
         }
-        temp = temp->next;
-        licznik++;
     }
+    free(tablica);
+    zaczekaj();
+}
+
+void wyszukaj_samochod(Samochod *lista_samochodow){
+    if (lista_samochodow == NULL) {
+        printf("\a");
+        printf(BOLD_RED "\nBLAD! Lista jest pusta. Musisz najpierw dodac samochody." RESET);
+        zaczekaj();
+        return;
+    }
+    system(CLEAR);
+    printf("=====================================\n");
+    printf("| " BOLD "      WYSZUKIWANIE SAMOCHODU      " RESET "|\n");
+    printf("=====================================\n");
+
+    char szukana_rejestracja[20];
+    printf("Podaj numer rejestracyjny samochodu: ");
+    scanf("%19s", szukana_rejestracja);
+    wyczysc_bufor();
+    zamien_na_wielkie(szukana_rejestracja);
+
+    Samochod *temp = lista_samochodow;
+    while (temp != NULL) {
+        if (strcmp(temp->nr_rejestracyjny, szukana_rejestracja) == 0) {
+            printf(GREEN "\nRejestracja " RESET BOLD "(%s):" RESET, temp->nr_rejestracyjny);
+            printf("\n  Marka: %s", temp->marka);
+            printf("\n  Model: %s", temp->model);
+            printf("\n  Kolor: %s", temp->kolor);
+            printf("\n  Rok produkcji: %d", temp->rok_produkcji);
+            if (!temp->status) {
+                printf("\n  Status: " BOLD_RED "Wypozyczony\n" RESET);
+            } else {
+                printf("\n  Status: " GREEN "Dostepny\n" RESET);
+            }
+            zaczekaj();
+            return;
+        }
+        temp = temp->next;
+    }
+    printf("\a");
+    printf(BOLD_RED "\nBLAD! Nie znaleziono samochodu o podanym numerze rejestracyjnym." RESET);
     zaczekaj();
 }

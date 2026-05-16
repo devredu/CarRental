@@ -1,6 +1,5 @@
 #ifndef CARRENTAL_STRUCTS_H
 #define CARRENTAL_STRUCTS_H
-#include <stdbool.h>
 
 typedef struct Samochod {
     char nr_rejestracyjny[20];
@@ -22,6 +21,7 @@ typedef struct Klient {
 } Klient;
 
 typedef struct Wypozyczenie {
+    char numer_wypozyczenia[20];
     int numer_karty_klienta;
     char nr_rejestracyjny[20];
     char data_od[11];
