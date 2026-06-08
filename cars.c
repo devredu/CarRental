@@ -164,7 +164,7 @@ void edytuj_samochod(Samochod **lista_samochodow){
             scanf("%29s", temp->kolor);
             wyczysc_bufor();
             zamien_na_wielkie(temp->kolor);
-            while (1) {
+            while (true) {
                 int nowy_rok;
                 printf("Podaj rok produkcji (obecny: %d): ", temp->rok_produkcji);
                 if (scanf("%d", &nowy_rok) == 1) {
