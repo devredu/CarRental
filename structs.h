@@ -1,7 +1,7 @@
 /**
  * @file structs.h
  * @brief Definicje struktur danych reprezentujących bazę wypożyczalni samochodów.
- * @details Plik zawiera struktury dla list jednokerunkowych przechowujących dane
+ * @details Plik zawiera struktury dla list jednokierunkowych przechowujących dane
  * o samochodach, klientach i wypożyczeniach.
  */
 #ifndef CARRENTAL_STRUCTS_H
@@ -57,7 +57,7 @@ typedef struct Wypozyczenie {
     char nr_rejestracyjny[20];
     /** @brief Data rozpoczęcia wypożyczenia. */
     char data_od[11];
-    /** @brief PLanowana data zwrotu pojazdu. */
+    /** @brief Planowana data zwrotu pojazdu. */
     char data_do[11];
     /** @brief Wskaźnik na następny element listy. */
     struct Wypozyczenie *next;

@@ -1,8 +1,21 @@
+/**
+* @file main.c
+ * @brief Główny plik programu.
+ * @details Inicjalizuje wskaźniki struktur bazy danych, ładuje zapisane dane
+ * z plików tekstowych oraz uruchamia interfejs użytkownika (menu główne).
+ */
+
 #include <stdio.h>
 #include "files.h"
 #include "gui.h"
 #include "structs.h"
 
+/**
+ * @brief Glowna funkcja sterująca aplikacją.
+ * @details Ustawia stan początkowy list na NULL, odpowiada za wywołanie funkcji
+ * odczytu danych z plików, a na końcu wywołuje funkcje odpowiadającą za wyświetlenie głównego menu użytkownika.
+ * @return int Status zakończenia programu.
+ */
 int main(void){
     Samochod *lista_samochodow = NULL;
     Klient *lista_klientow = NULL;

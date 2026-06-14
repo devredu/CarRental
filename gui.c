@@ -125,7 +125,7 @@ void menu_klient(Wypozyczenie **lista_wypozyczen, Klient **lista_klientow){
         printf("=====================================\n");
         printf("| " BOLD "      ZARZADZANIE KLIENTAMI       " RESET "|\n");
         printf("=====================================\n");
-        printf("| " GREEN "1. " RESET "Dodaj kilienta                 |\n");
+        printf("| " GREEN "1. " RESET "Dodaj klienta                  |\n");
         printf("| " GREEN "2. " RESET "Usun klienta                   |\n");
         printf("| " GREEN "3. " RESET "Edytuj klienta                 |\n");
         printf("| " GREEN "4. " RESET "Wyswietl liste klientow        |\n");

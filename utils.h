@@ -1,6 +1,6 @@
 /**
  * @file utils.h
- * @brief Funkcje pomocniczne oraz makra systemowe używane w projekcie.
+ * @brief Funkcje pomocnicze oraz makra systemowe używane w projekcie.
  * @details Plik zawiera definicje makr pozwalających na kompilowanie projektu na systemach Windows oraz MacOS,
  * definicje kodów ANSI do terminala oraz deklaracje funkcji walidacyjnych.
 */
@@ -67,7 +67,7 @@ void zamien_na_wielkie(char *tekst);
  * @brief Sprawdza czy wprowadzona przez użytkownika data jest w poprawnym formacie RRRR-MM-DD.
  * @details Dokonuje walidacji daty wpisanej przez użytkownika.
  * W pierwszej kolejności sprawdzana jest długość ciągu oraz obecność myślników. Następnie
- * funkcja sprawdza, czy pozostałe znaki sa cyframi, a na końcu sprawdza
+ * funkcja sprawdza, czy pozostałe znaki są cyframi, a na końcu sprawdza
  * zakresy kalendarzowe (rok 2000-2100, miesiące 1-12, dni 1-31).
  * @param data Wskaźnik na ciąg znaków, zawierający datę do walidacji.
  * @return true Jeśli data jest prawidłowa.
