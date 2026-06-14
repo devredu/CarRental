@@ -2,7 +2,7 @@
  * @file clients.h
  * @brief Funkcje zarządzające listą dla klientów.
  * @details Plik zawiera deklaracje funkcji odpowiedzialnych za operacje na liście jednokierunkowej klientów,
- * takie jak dodawanie, usuwanie, edytowanie i wyświetlanie listy klientów.
+ * takiech jak dodawanie, usuwanie, edytowanie i wyświetlanie listy klientów.
  */
 
 #ifndef CARRENTAL_CLIENTS_H
@@ -20,7 +20,6 @@
  * @return void
  */
 void dodaj_klienta(Klient **lista_klientow);
-
 /**
  * @brief Pozwala na usuwanie konkretnego klienta po numerze karty klienta.
  * @details Funkcja wyświetla podmenu i pobiera od użytkownika numer karty klienta, po czym przeszukuje listę i sprawdza
@@ -45,7 +44,7 @@ void usun_klienta(Wypozyczenie *lista_wypozyczen, Klient **lista_klientow);
 void edytuj_klienta(Klient **lista_klientow);
 /**
  * @brief Wyświetla listę wszystkich klientów.
- * @details Funkcja przeszukuje listę i wyświetla podmenu ze wszystkimi zapisanymi klientami oraz kluczowe o nich informacje.
+ * @details Funkcja przechodzi przez listę i wyświetla podmenu ze wszystkimi zapisanymi klientami oraz kluczowe o nich informacje.
  * @param lista_klientow Wskaźnik na początek listy klientów.
  * @return void
  */
