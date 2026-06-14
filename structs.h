@@ -1,6 +1,6 @@
 /**
  * @file structs.h
- * @brief Definicje struktur danych reprezentujących bazę wypożyczalni samochodów.
+ * @brief Definicje struktur danych wykorzystywanych w projekcie wypożyczalni samochodów.
  * @details Plik zawiera struktury dla list jednokierunkowych przechowujących dane
  * o samochodach, klientach i wypożyczeniach.
  */
