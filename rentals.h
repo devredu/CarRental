@@ -39,8 +39,8 @@ void usun_wypozyczenie(Samochod **lista_samochodow, Wypozyczenie **lista_wypozyc
  * zwraca komunikat i kończy działanie. Po znalezieniu, umożliwia nadpisanie (edycję) danych. W przypadku zmiany
  * wypożyczanego pojazdu, funkcja sprawdza istnienie oraz dostępność nowego samochodu - jeśli jest wolny, status
  * poprzedniego auta zmienia się na dostępny, a nowego na wypożyczony.
- * @param lista_samochodow Wskaźnik na wskaźnik na początek listy samochodów.
- * @param lista_wypozyczen Wskaźnik na wskaźnik na początek listy wypożyczeń.
+ * @param lista_samochodow Podwójny wskaźnik na początek listy samochodów.
+ * @param lista_wypozyczen Podwójny wskaźnik na początek listy wypożyczeń.
  * @return void
  */
 void edytuj_wypozyczenie(Samochod **lista_samochodow, Wypozyczenie **lista_wypozyczen);
@@ -52,7 +52,7 @@ void edytuj_wypozyczenie(Samochod **lista_samochodow, Wypozyczenie **lista_wypoz
  * - Aktualne (wypożyczenie w trakcie trwania)
  * - Do zwrotu dzisiaj (aktualna data pokrywa się z dniem zwrotu)
  * - Po terminie (aktualna data przekroczyła planowany dzień zwrotu)
- * @param lista_wypozyczen Wskaźnik na początek listy wypożyczeń.
+ * @param lista_wypozyczen Podwójny wskaźnik listy wypożyczeń.
  * @return void
  */
 void wyswietl_wypozyczenia(Wypozyczenie *lista_wypozyczen);

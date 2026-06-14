@@ -23,9 +23,9 @@
  * - Zarządzanie wypożyczeniami
  * - Zapisz i wyjdź
  *
- * @param lista_samochodow Wskaźnik na wskaźnik na początek listy samochodów.
- * @param lista_klientow Wskaźnik na wskaźnik na początek listy klientów.
- * @param lista_wypozyczen Wskaźnik na wskaźnik na początek listy wypożyczeń.
+ * @param lista_samochodow Podwójny wskaźnik na początek listy samochodów.
+ * @param lista_klientow Podwójny wskaźnik na początek listy klientów.
+ * @param lista_wypozyczen Podwójny wskaźnik na początek listy wypożyczeń.
  * @return void
  */
 void menu_glowne(Samochod **lista_samochodow, Klient **lista_klientow, Wypozyczenie **lista_wypozyczen);
@@ -45,8 +45,8 @@ void menu_glowne(Samochod **lista_samochodow, Klient **lista_klientow, Wypozycze
  * - Wyszukaj samochód
  * - Wróć do menu głównego
  *
- * @param lista_wypozyczen Wskaźnik na wskaźnik na początek listy wypożyczeń.
- * @param lista_samochodow Wskaźnik na wskaźnik na początek listy samochodów.
+ * @param lista_wypozyczen Podwójny wskaźnik na początek listy wypożyczeń.
+ * @param lista_samochodow Podwójny wskaźnik na początek listy samochodów.
  * @return void
  */
 void menu_samochod(Wypozyczenie **lista_wypozyczen, Samochod **lista_samochodow);
@@ -65,8 +65,8 @@ void menu_samochod(Wypozyczenie **lista_wypozyczen, Samochod **lista_samochodow)
  * - Wyświetl listę klientów
  * - Wróć do menu głównego
  *
- * @param lista_wypozyczen Wskaźnik na wskaźnik na początek listy wypożyczeń.
- * @param lista_klientow Wskaźnik na wskaźnik na początek listy klientów.
+ * @param lista_wypozyczen Podwójny wskaźnik na początek listy wypożyczeń.
+ * @param lista_klientow Podwójny wskaźnik na początek listy klientów.
  * @return void
  */
 void menu_klient(Wypozyczenie **lista_wypozyczen, Klient **lista_klientow);
@@ -85,9 +85,9 @@ void menu_klient(Wypozyczenie **lista_wypozyczen, Klient **lista_klientow);
  * - Wyświetl listę wypożyczeń
  * - Wróć do menu głównego
  *
- * @param lista_samochodow Wskaźnik na wskaźnik na początek listy samochodów.
- * @param lista_klientow Wskaźnik na wskaźnik na początek listy klientów.
- * @param lista_wypozyczen Wskaźnik na wskaźnik na początek listy wypożyczeń.
+ * @param lista_samochodow Podwójny wskaźnik na początek listy samochodów.
+ * @param lista_klientow Podwójny wskaźnik na początek listy klientów.
+ * @param lista_wypozyczen Podwójny wskaźnik na początek listy wypożyczeń.
  * @return void
  */
 void menu_wypozyczenie(Samochod **lista_samochodow, Klient **lista_klientow, Wypozyczenie **lista_wypozyczen);

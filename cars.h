@@ -16,7 +16,7 @@
  * sprawdza czy pojazd o danym numerze rejestracyjnym już istnieje oraz weryfikuje czy rok produkcji
  * mieści się w poprawnym zakresie (1900-2026). Tworzy nowy element listy, w którym zapisuje pobrane dane, status domyślnie
  * ustawiany jest jako dostępny, a ciągi tekstowe są formatowane do postaci wielkich liter przy pomocy funkcji pomocniczej.
- * @param lista_samochodow Wskaźnik na wskaźnik na początek listy samochodów.
+ * @param lista_samochodow Podwójny wskaźnik na początek listy samochodów.
  * @return void
  */
 void dodaj_samochod(Samochod **lista_samochodow);
@@ -27,7 +27,7 @@ void dodaj_samochod(Samochod **lista_samochodow);
  * W przypadku gdy samochód istnieje i jest dostępny, funkcja przeszukuje listę samochodów i zwalnia zajmowaną przez dany samochód
  * pamięć (usuwa samochód).
  * @param lista_wypozyczen Wskaźnik na początek listy wypożyczeń.
- * @param lista_samochodow Wskaźnik na wskaźnik na początek listy samochodów.
+ * @param lista_samochodow Podwójny wskaźnik na początek listy samochodów.
  * @return void
  */
 void usun_samochod(Wypozyczenie *lista_wypozyczen, Samochod **lista_samochodow);
@@ -38,7 +38,7 @@ void usun_samochod(Wypozyczenie *lista_wypozyczen, Samochod **lista_samochodow);
  * rejestracyjny samochód nie istnieje, funkcja zwraca o tym komunikat i kończy działanie. Po znalezieniu elementu,
  * umożliwia nadpisanie (edycję) marki, modelu, koloru oraz roku produkcji, z wyłączeniem numeru rejestracyjnego,
  * który jest indywidualny i nie podlega zmianie.
- * @param lista_samochodow Wskaźnik na wskaźnik na początek listy samochodów.
+ * @param lista_samochodow Podwójny wskaźnik na początek listy samochodów.
  * @return void
  */
 void edytuj_samochod(Samochod **lista_samochodow);

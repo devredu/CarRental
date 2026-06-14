@@ -16,7 +16,7 @@
  * numer karty klienta mieści się w zakresie (0-9999), czy wpisany numer karty klienta nie jest już zajęty oraz weryfikuje,
  * czy numer telefonu jest w poprawnym formacie. Tworzy nowy element listy, w którym zapisuje wpisywane dane tekstowe,
  * przekonwertowane do postaci dużych liter przy pomocy funkcji pomocniczej.
- * @param lista_klientow Wskaźnik na wskaźnik na początek listy klientów.
+ * @param lista_klientow Podwójny wskaźnik na początek listy klientów.
  * @return void
  */
 void dodaj_klienta(Klient **lista_klientow);
@@ -28,7 +28,7 @@ void dodaj_klienta(Klient **lista_klientow);
  * zwróci o tym komunikat i zakończy działanie bez usuwania. W przypadku gdy dany klient istnieje,
  * nie ma aktualnie wypożyczonego samochodu, zwalnia zajmowaną przez niego pamięć (usuwa klienta).
  * @param lista_wypozyczen Wskaźnik na początek listy wypożyczeń.
- * @param lista_klientow Wskaźnik na wskaźnik na początek listy klientów.
+ * @param lista_klientow Podwójny wskaźnik na początek listy klientów.
  * @return void
  */
 void usun_klienta(Wypozyczenie *lista_wypozyczen, Klient **lista_klientow);
@@ -38,7 +38,7 @@ void usun_klienta(Wypozyczenie *lista_wypozyczen, Klient **lista_klientow);
  * następnie przeszukuje listę w celu odnalezienia szukanego klienta, jeśli go nie znajdzie, zwraca komunikat i kończy działanie.
  * Gdy jednak szukany klient istnieje, kolejno wyświetla aktualne informacje o danym kliencie z możliwością ich
  * nadpisania (zmiany) z wyłączeniem numeru karty klienta, który jest indywidualny i nie podlega zmianie.
- * @param lista_klientow Wskaźnik na wskaźnik na początek listy klientów.
+ * @param lista_klientow Podwójny wskaźnik na początek listy klientów.
  * @return void
  */
 void edytuj_klienta(Klient **lista_klientow);
