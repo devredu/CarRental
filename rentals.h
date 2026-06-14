@@ -17,7 +17,7 @@
  * w którym zapisuje wprowadzone dane oraz zmienia status pojazdu na wypożyczony.
  * @param lista_samochodow Wskaźnik na początek listy samochodów.
  * @param lista_klientow Wskaźnik na początek listy klientów.
- * @param lista_wypozyczen Wskaźnik na wskaźnik na początek listy wypożyczeń.
+ * @param lista_wypozyczen Podwójny wskaźnik na początek listy wypożyczeń.
  * @return void
  */
 void dodaj_wypozyczenie(Samochod *lista_samochodow, Klient *lista_klientow, Wypozyczenie **lista_wypozyczen);
@@ -27,8 +27,8 @@ void dodaj_wypozyczenie(Samochod *lista_samochodow, Klient *lista_klientow, Wypo
  * wypożyczeń. Jeśli szukane wypożyczenie nie istnieje, funkcja zwraca komunikat i kończy działanie.
  * Następnie przeszukuje listę samochodów i po znalezieniu szukanego samochodu, funkcja zmienia status z wypożyczonego
  * na dostępny, a następnie zwalnia zajmowaną przez wskazane wypożyczenie pamięć (usuwa wypożyczenie).
- * @param lista_samochodow Wskaźnik na wskaźnik na początek listy samochodów (wymagany do zmiany statusu auta).
- * @param lista_wypozyczen Wskaźnik na wskaźnik na początek listy wypożyczeń.
+ * @param lista_samochodow Podwójny wskaźnik na początek listy samochodów (wymagany do zmiany statusu auta).
+ * @param lista_wypozyczen Podwójny wskaźnik na początek listy wypożyczeń.
  * @return void
  */
 void usun_wypozyczenie(Samochod **lista_samochodow, Wypozyczenie **lista_wypozyczen);
