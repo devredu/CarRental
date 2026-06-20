@@ -1,7 +1,7 @@
 /**
  * @file files.h
  * @brief Funkcje zarządzające zapisem i odczytem danych z plików tekstowych.
- * @details Plik zawiera funkcje obsługujące logikę zapisywania danych (w formacie CSV - dane oddzielone średnikiem) oraz odczytywania
+ * @details Plik zawiera deklaracje funkcji obsługujących logikę zapisywania (w formacie CSV - dane oddzielone średnikiem) oraz odczytywania
  * danych z plików tekstowych i ładowania ich do list jednokierunkowych.
  */
 
@@ -19,7 +19,7 @@
 void zapisz_samochody(Samochod *lista_samochodow);
 
 /**
- * @brief Wczytuje dane z pliku tekstowego do listy z samochodami.
+ * @brief Wczytuje dane z pliku tekstowego do listy samochodów.
  * @details Otwiera plik "samochody.txt" w trybie odczytu. Parsuje linie za pomocą fscanf i dynamicznie alokuje pamięć dla każdego samochodu z pliku,
  * podpinając je kolejno do końca listy jednokierunkowej.
  * W przypadku gdy funkcja nie znajdzie pliku tekstowego, kończy swoje działanie.

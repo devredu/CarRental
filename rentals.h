@@ -2,7 +2,7 @@
  * @file rentals.h
  * @brief Funkcje zarządzające listą wypożyczeń.
  * @details Plik zawiera deklaracje funkcji odpowiedzialnych za operacje na liście jednokierunkowej wypożyczeń,
- * takiech jak dodawanie, usuwanie, edytowanie i wyświetlanie listy wypożyczeń.
+ * takich jak dodawanie, usuwanie, edytowanie i wyświetlanie listy wypożyczeń.
  */
 #ifndef CARRENTAL_RENTALS_H
 #define CARRENTAL_RENTALS_H
@@ -52,7 +52,7 @@ void edytuj_wypozyczenie(Samochod **lista_samochodow, Wypozyczenie **lista_wypoz
  * - Aktualne (wypożyczenie w trakcie trwania)
  * - Do zwrotu dzisiaj (aktualna data pokrywa się z dniem zwrotu)
  * - Po terminie (aktualna data przekroczyła planowany dzień zwrotu)
- * @param lista_wypozyczen Podwójny wskaźnik listy wypożyczeń.
+ * @param lista_wypozyczen Wskaźnik na początek listy wypożyczeń.
  * @return void
  */
 void wyswietl_wypozyczenia(Wypozyczenie *lista_wypozyczen);

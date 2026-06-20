@@ -13,9 +13,8 @@
 /**
  * @brief Funkcja wyświetlająca i obsługująca główne menu programu.
  * @details Funkcja wyświetla główne menu programu i odpowiada za przełączanie się pomiędzy interfejsami: samochodów, klientów i wypożyczeń.
- * Jest ona zabezpieczenia przed wyborem opcji spoza zakresu. Wybór opcji "0" automatycznie zapisuje wszystkie wprowadzone przez
+ * Jest ona zabezpieczona przed wyborem opcji spoza zakresu. Wybór opcji "0" automatycznie zapisuje wszystkie wprowadzone przez
  * użytkownika dane do poszczególnych plików tekstowych i kończy działanie programu.
- *
  *
  * Struktura menu:
  * - Zarządzanie samochodami
@@ -35,7 +34,6 @@ void menu_glowne(Samochod **lista_samochodow, Klient **lista_klientow, Wypozycze
  * @details Funkcja wyświetla menu do zarządzania samochodami. Posiada opcje wywołujące inne funkcje służące do: dodawania,
  * usuwania, edytowania, wyświetlania listy oraz wyszukiwania samochodów. Posiada też opcję powrotu do menu głównego.
  * Funkcja jest zabezpieczona przed wyborem opcji spoza zakresu.
- *
  *
  * Struktura menu:
  * - Dodaj samochód
@@ -57,7 +55,6 @@ void menu_samochod(Wypozyczenie **lista_wypozyczen, Samochod **lista_samochodow)
  * usuwania oraz wyświetlania listy klientów. Posiada też opcję powrotu do menu głównego. Funkcja jest zabezpieczona
  * przed wyborem opcji spoza zakresu.
  *
- *
  * Struktura menu:
  * - Dodaj klienta
  * - Usuń klienta
@@ -76,7 +73,6 @@ void menu_klient(Wypozyczenie **lista_wypozyczen, Klient **lista_klientow);
  * @details Funkcja wyświetla menu do zarządzania wypożyczeniami. Posiada opcje wywołujące inne funkcje służące do:
  * dodawania, usuwania, edytowania oraz wyświetlania listy wypożyczeń. Posiada też opcję powrotu do menu głównego.
  * Funkcja jest zabezpieczona przed wyborem opcji spoza zakresu.
- *
  *
  * Struktura menu:
  * - Dodaj wypożyczenie

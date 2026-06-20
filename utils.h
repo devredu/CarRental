@@ -1,9 +1,9 @@
 /**
  * @file utils.h
  * @brief Funkcje pomocnicze oraz makra systemowe używane w projekcie.
- * @details Plik zawiera definicje makr pozwalających na kompilowanie projektu na systemach Windows oraz MacOS,
- * definicje kodów ANSI do terminala oraz deklaracje funkcji walidacyjnych.
-*/
+ * @details Plik zawiera deklaracje makr pozwalających na kompilowanie projektu na systemach Windows oraz MacOS,
+ * deklaracje kodów ANSI do terminala oraz deklaracje funkcji walidacyjnych.
+ */
 
 #ifndef CARRENTAL_UTILS_H
 #define CARRENTAL_UTILS_H
@@ -11,32 +11,21 @@
 
 #ifdef _WIN32
     #include <windows.h>
-    /** @brief Komenda systemowa do czyszczenia terminalu dla systemu Windows. */
-    #define CLEAR "cls"
+    #define CLEAR "cls" ///< Komenda systemowa do czyszczenia terminalu dla systemu Windows.
 #else
     #include <unistd.h>
-    /** @brief Komenda systemowa do czyszczenia terminalu dla systemu MacOS. */
-    #define CLEAR "clear"
-    /** @brief Makro 'usypiające' działania programu na określoną liczbę milisekund. */
-    #define Sleep(ms) usleep((ms) * 500)
+    #define CLEAR "clear" ///< Komenda systemowa do czyszczenia terminalu dla systemu MacOS.
+    #define Sleep(ms) usleep((ms) * 500) ///< Makro 'usypiające' działania programu na określoną liczbę milisekund.
 #endif
 
-/** @brief Resetuje kolor do domyślnego. */
-#define RESET       "\033[0m"
-/** @brief Pogrubienie tekstu. */
-#define BOLD        "\033[1m"
-/** @brief Szary kolor tekstu. */
-#define GRAY        "\033[90m"
-/** @brief Czerwony kolor tekstu. */
-#define RED         "\033[31m"
-/** @brief Zielony kolor tekstu. */
-#define GREEN       "\033[32m"
-/** @brief Żółty kolor tekstu. */
-#define YELLOW      "\033[33m"
-/** @brief Cyjanowy kolor tekstu. */
-#define CYAN        "\033[36m"
-/** @brief Pogrubiony, czerwony kolor tekstu. */
-#define BOLD_RED    "\033[1;31m"
+#define RESET "\033[0m" ///< Resetuje kolor do domyślnego.
+#define BOLD "\033[1m" ///< Pogrubienie tekstu.
+#define GRAY "\033[90m" ///< Szary kolor tekstu.
+#define RED "\033[31m" ///< Czerwony kolor tekstu.
+#define GREEN "\033[32m" ///< Zielony kolor tekstu.
+#define YELLOW "\033[33m" ///< Żółty kolor tekstu.
+#define CYAN "\033[36m" ///< Cyjanowy kolor tekstu.
+#define BOLD_RED "\033[1;31m" ///< Pogrubiony, czerwony kolor tekstu.
 
 /**
  * @brief Wyświetla komunikat i zatrzymuje działanie programu do momentu naciśnięcia Enter.

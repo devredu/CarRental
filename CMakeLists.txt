@@ -19,3 +19,7 @@ add_executable(CarRental
         rentals.c
         rentals.h
 )
+
+if(WIN32)
+    target_link_options(CarRental PRIVATE "-static-libgcc" "-static-libstdc++" "-static")
+endif()

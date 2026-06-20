@@ -1,5 +1,5 @@
 /**
-* @file main.c
+ * @file main.c
  * @brief Główny plik programu.
  * @details Inicjalizuje wskaźniki struktur bazy danych, ładuje zapisane dane
  * z plików tekstowych oraz uruchamia interfejs użytkownika (menu główne).
@@ -11,9 +11,9 @@
 #include "structs.h"
 
 /**
- * @brief Glowna funkcja sterująca aplikacją.
+ * @brief Główna funkcja sterująca aplikacją.
  * @details Ustawia stan początkowy list na NULL, odpowiada za wywołanie funkcji
- * odczytu danych z plików, a na końcu wywołuje funkcje odpowiadającą za wyświetlenie głównego menu użytkownika.
+ * odczytu danych z plików, a na końcu wywołuje funkcję odpowiadającą za wyświetlenie głównego menu użytkownika.
  * @return int Status zakończenia programu.
  */
 int main(void){

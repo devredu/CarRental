@@ -1,6 +1,6 @@
 /**
  * @file cars.h
- * @brief Funkcje zarządzające listą dla samochodów.
+ * @brief Funkcje zarządzające listą samochodów.
  * @details Plik zawiera deklaracje funkcji odpowiedzialnych za operacje na liście jednokierunkowej samochodów,
  * takich jak dodawanie, usuwanie, edytowanie, wyświetlanie listy oraz wyszukiwanie samochodów.
  */
@@ -20,6 +20,7 @@
  * @return void
  */
 void dodaj_samochod(Samochod **lista_samochodow);
+
 /**
  * @brief Pozwala na usuwanie konkretnego samochodu po numerze rejestracyjnym.
  * @details Funkcja wyświetla podmenu i pobiera od użytkownika numer rejestracyjny pojazdu, po czym przeszukuje listę wypożyczeń.
@@ -31,6 +32,7 @@ void dodaj_samochod(Samochod **lista_samochodow);
  * @return void
  */
 void usun_samochod(Wypozyczenie *lista_wypozyczen, Samochod **lista_samochodow);
+
 /**
  * @brief Pozwala na edytowanie danych konkretnego samochodu po numerze rejestracyjnym.
  * @details Funkcja wyświetla podmenu, w którym umożliwia edycję danego samochodu. Początkowo pobiera od użytkownika
@@ -42,6 +44,7 @@ void usun_samochod(Wypozyczenie *lista_wypozyczen, Samochod **lista_samochodow);
  * @return void
  */
 void edytuj_samochod(Samochod **lista_samochodow);
+
 /**
  * @brief Wyświetla listę wszystkich samochodów z opcją sortowania.
  * @details Funkcja wyświetla podmenu wyboru sposobu wyświetlania (rejestracja, marka, kolor, rok, status lub brak sortowania).
@@ -51,6 +54,7 @@ void edytuj_samochod(Samochod **lista_samochodow);
  * @return void
  */
 void wyswietl_samochody(Samochod *lista_samochodow);
+
 /**
  * @brief Pozwala na wyszukanie konkretnego samochodu po numerze rejestracyjnym.
  * @details Funkcja wyświetla podmenu i pobiera od użytkownika szukany numer rejestracyjny, przeszukuje listę samochodów
