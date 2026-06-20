@@ -9,23 +9,33 @@
 #define CARRENTAL_UTILS_H
 #include <stdbool.h>
 
+/**
+ * @name Makra systemowe
+ * @{
+ */
 #ifdef _WIN32
     #include <windows.h>
-    #define CLEAR "cls" ///< Komenda systemowa do czyszczenia terminalu dla systemu Windows.
+    #define CLEAR "cls"     ///< Komenda systemowa do czyszczenia terminalu dla systemu Windows.
 #else
     #include <unistd.h>
-    #define CLEAR "clear" ///< Komenda systemowa do czyszczenia terminalu dla systemu MacOS.
+    #define CLEAR "clear"   ///< Komenda systemowa do czyszczenia terminalu dla systemu MacOS.
     #define Sleep(ms) usleep((ms) * 500) ///< Makro 'usypiające' działania programu na określoną liczbę milisekund.
 #endif
+/** @} */
 
-#define RESET "\033[0m" ///< Resetuje kolor do domyślnego.
-#define BOLD "\033[1m" ///< Pogrubienie tekstu.
-#define GRAY "\033[90m" ///< Szary kolor tekstu.
-#define RED "\033[31m" ///< Czerwony kolor tekstu.
-#define GREEN "\033[32m" ///< Zielony kolor tekstu.
-#define YELLOW "\033[33m" ///< Żółty kolor tekstu.
-#define CYAN "\033[36m" ///< Cyjanowy kolor tekstu.
-#define BOLD_RED "\033[1;31m" ///< Pogrubiony, czerwony kolor tekstu.
+/**
+ * @name Kody ANSI do formatowania tekstu w terminalu
+ * @{
+ */
+#define RESET       "\033[0m"    ///< Resetuje kolor do domyślnego.
+#define BOLD        "\033[1m"    ///< Pogrubienie tekstu.
+#define GRAY        "\033[90m"   ///< Szary kolor tekstu.
+#define RED         "\033[31m"   ///< Czerwony kolor tekstu.
+#define GREEN       "\033[32m"   ///< Zielony kolor tekstu.
+#define YELLOW      "\033[33m"   ///< Żółty kolor tekstu.
+#define CYAN        "\033[36m"   ///< Cyjanowy kolor tekstu.
+#define BOLD_RED    "\033[1;31m" ///< Pogrubiony, czerwony kolor tekstu.
+/** @} */
 
 /**
  * @brief Wyświetla komunikat i zatrzymuje działanie programu do momentu naciśnięcia Enter.

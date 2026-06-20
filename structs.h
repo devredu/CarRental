@@ -37,12 +37,12 @@ typedef struct Klient {
  * @brief Struktura reprezentująca wypożyczenie.
  */
 typedef struct Wypozyczenie {
-    char numer_wypozyczenia[20];    ///< Unikalny numer wypożyczenia.
-    int numer_karty_klienta;        ///< Numer karty istniejącego klienta.
-    char nr_rejestracyjny[20];      ///< Numer rejestracyjny istniejącego pojazdu.
-    char data_od[11];               ///< Data rozpoczęcia wypożyczenia.
-    char data_do[11];               ///< Planowana data zwrotu pojazdu.
-    struct Wypozyczenie *next;      ///< Wskaźnik na następny element listy.
+    char numer_wypozyczenia[20]; ///< Unikalny numer wypożyczenia.
+    int numer_karty_klienta; ///< Numer karty istniejącego klienta.
+    char nr_rejestracyjny[20]; ///< Numer rejestracyjny istniejącego pojazdu.
+    char data_od[11]; ///< Data rozpoczęcia wypożyczenia.
+    char data_do[11]; ///< Planowana data zwrotu pojazdu.
+    struct Wypozyczenie *next; ///< Wskaźnik na następny element listy.
 } Wypozyczenie;
 
 #endif // CARRENTAL_STRUCTS_H
